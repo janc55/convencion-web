@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+  .heritage-ribbon {
+    background: linear-gradient(to bottom, #eec200, #eac32b);
+    width: 2px;
+    height: 100px;
+  }
+  .bg-hero-gradient {
+    background: linear-gradient(135deg, #0c3569 0%, #1a5fb4 100%);
+  }
+  .hex-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cpath fill='%23eec200' fill-opacity='0.05' d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.89v12.22l11 6.35 11-6.35V17.89L14 11.54 3 17.89z'/%3E%3C/script%3E");
+  }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #00132f; }
+  ::-webkit-scrollbar-thumb { background: #eec200; border-radius: 4px; }
+  
+  body {
+    min-height: max(884px, 100dvh);
+  }
+}

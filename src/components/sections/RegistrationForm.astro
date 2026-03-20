@@ -1,0 +1,74 @@
+---
+---
+
+<section class="py-24 bg-[#0c3569] relative" id="registro">
+  <div class="absolute inset-0 hex-pattern opacity-10"></div>
+  <div class="max-w-3xl mx-auto px-6 relative z-10">
+    <div class="bg-surface-container-high p-8 md:p-12 rounded-2xl shadow-2xl border border-primary/20">
+      <h2 class="font-headline text-4xl text-center text-primary mb-4">Registro de Participantes</h2>
+      <p class="text-center text-secondary mb-10">Complete el formulario para confirmar su asistencia a la convención.</p>
+      <form class="space-y-6">
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Nombre Completo</label>
+            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Ej. Juan Pérez" type="text" />
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Club de Leones</label>
+            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Nombre de su Club" type="text" />
+          </div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Distrito</label>
+            <select class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all">
+              <option class="bg-surface">Distrito B-1</option>
+              <option class="bg-surface">Distrito B-2</option>
+              <option class="bg-surface">Otro</option>
+            </select>
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">País</label>
+            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" type="text" value="Bolivia" />
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Cargo / Rol</label>
+            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Ej. Presidente" type="text" />
+          </div>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Correo Electrónico</label>
+            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="usuario@correo.com" type="email" />
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Teléfono / WhatsApp</label>
+            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="+591 ..." type="tel" />
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs uppercase tracking-widest text-primary font-bold">Tipo de Participante</label>
+          <div class="flex gap-8 pt-2">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input class="text-primary focus:ring-primary bg-transparent border-primary/40" name="type" type="radio" />
+              <span class="text-sm">Delegado</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input class="text-primary focus:ring-primary bg-transparent border-primary/40" name="type" type="radio" />
+              <span class="text-sm">Invitado</span>
+            </label>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs uppercase tracking-widest text-primary font-bold">Requerimientos Especiales</label>
+          <textarea class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Dietas, asistencia, etc." rows="2"></textarea>
+        </div>
+        <div class="pt-8">
+          <button class="w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-xl hover:bg-tertiary transition-all active:scale-[0.98]" type="submit">
+            Confirmar Registro
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/layout/Navbar.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import About from '../components/sections/About.astro';
+import Agenda from '../components/sections/Agenda.astro';
+import Hotels from '../components/sections/Hotels.astro';
+import Restaurants from '../components/sections/Restaurants.astro';
+import TourismCarousel from '../components/sections/TourismCarousel.astro';
+import RegistrationForm from '../components/sections/RegistrationForm.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout title="LXXV Convención Nacional - Club de Leones de Bolivia">
+	<Navbar />
+	<main>
+		<Hero />
+		<About />
+		<Agenda />
+		<Hotels />
+		<Restaurants />
+		<TourismCarousel />
+		<RegistrationForm />
+	</main>
+	<Footer />
+</Layout>
