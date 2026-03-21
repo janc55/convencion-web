@@ -1,4 +1,5 @@
 ---
+const registrationDeadline = new Date("2026-04-20").getTime();
 ---
 
 <section class="py-24 bg-[#0c3569] relative" id="registro">
@@ -6,7 +7,16 @@
   <div class="max-w-3xl mx-auto px-6 relative z-10">
     <div class="bg-surface-container-high p-8 md:p-12 rounded-2xl shadow-2xl border border-primary/20 animate-on-scroll scale-up">
       <h2 class="font-headline text-4xl text-center text-primary mb-4">Registro de Participantes</h2>
-      <p class="text-center text-secondary mb-10">Complete el formulario para confirmar su asistencia a la convención.</p>
+      <p class="text-center text-secondary mb-6">Complete el formulario para confirmar su asistencia a la convención.</p>
+      
+      <div id="registration-countdown" class="text-center mb-8 py-4 px-6 bg-primary/10 border border-primary/30 rounded-lg">
+        <p class="text-lg text-on-surface">
+          <span class="font-bold text-primary text-2xl" id="days-remaining">--</span>
+          <span class="text-on-surface"> días para el cierre de registro</span>
+        </p>
+        <p class="text-sm text-secondary mt-1">Fecha límite: 20 de abril de 2026</p>
+      </div>
+
       <form class="space-y-6">
         <div class="grid md:grid-cols-2 gap-6">
           <div class="space-y-2">
@@ -32,7 +42,7 @@
             <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" type="text" value="Bolivia" />
           </div>
           <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Cargo / Rol</label>
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Cartera</label>
             <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Ej. Presidente" type="text" />
           </div>
         </div>
@@ -46,17 +56,23 @@
             <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="+591 ..." type="tel" />
           </div>
         </div>
-        <div class="space-y-2">
-          <label class="text-xs uppercase tracking-widest text-primary font-bold">Tipo de Participante</label>
-          <div class="flex gap-8 pt-2">
-            <label class="flex items-center gap-2 cursor-pointer">
-              <input class="text-primary focus:ring-primary bg-transparent border-primary/40" name="type" type="radio" />
-              <span class="text-sm">Delegado</span>
-            </label>
-            <label class="flex items-center gap-2 cursor-pointer">
-              <input class="text-primary focus:ring-primary bg-transparent border-primary/40" name="type" type="radio" />
-              <span class="text-sm">Invitado</span>
-            </label>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Tipo de Participante</label>
+            <div class="flex gap-8 pt-2">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input class="text-primary focus:ring-primary bg-transparent border-primary/40" name="type" type="radio" />
+                <span class="text-sm">Delegado</span>
+              </label>
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input class="text-primary focus:ring-primary bg-transparent border-primary/40" name="type" type="radio" />
+                <span class="text-sm">Invitado</span>
+              </label>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <label class="text-xs uppercase tracking-widest text-primary font-bold">Nro. de León <span class="text-secondary font-normal">(Opcional)</span></label>
+            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Ej. 123456" type="text" />
           </div>
         </div>
         <div class="space-y-2">
@@ -72,3 +88,35 @@
     </div>
   </div>
 </section>
+
+<script>
+  const deadline = new Date("2026-04-20").getTime();
+  
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const distance = deadline - now;
+    
+    const daysEl = document.getElementById("days-remaining");
+    const countdownEl = document.getElementById("registration-countdown");
+    
+    if (daysEl) {
+      if (distance < 0) {
+        daysEl.innerText = "0";
+        if (countdownEl) {
+          countdownEl.innerHTML = `
+            <p class="text-lg text-on-surface">
+              <span class="font-bold text-primary">El registro ha cerrado</span>
+            </p>
+            <p class="text-sm text-secondary mt-1">Gracias por su interés en la convención</p>
+          `;
+        }
+      } else {
+        const days = Math.ceil(distance / (1000 * 60 * 60 * 24));
+        daysEl.innerText = days.toString();
+      }
+    }
+  };
+  
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+</script>

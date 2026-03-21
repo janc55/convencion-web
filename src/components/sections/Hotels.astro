@@ -1,5 +1,7 @@
 ---
+import { hotelsData } from "../../data/hotels";
 
+const featuredHotels = hotelsData.slice(0, 3);
 ---
 
 <section class="py-24 bg-surface" id="hoteles">
@@ -11,158 +13,66 @@
           Opciones recomendadas con tarifas especiales para convencionistas.
         </p>
       </div>
+      <a 
+        href="/hoteles" 
+        class="hidden md:inline-flex items-center gap-2 px-6 py-3 bg-surface-container-high text-secondary font-bold rounded-md hover:text-primary hover:bg-surface-container-low transition-all"
+      >
+        Ver todos
+        <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </a>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
-      <!-- Hotel 1 -->
-      <div
-        class="group bg-surface-container-low rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all animate-on-scroll scale-up stagger-1"
+      {featuredHotels.map((hotel, index) => (
+        <div
+          class="group bg-surface-container-low rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all animate-on-scroll scale-up"
+          style={`stagger-${index + 1}`}
+        >
+          <div class="h-56 overflow-hidden">
+            <img
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              alt={`${hotel.name} en Oruro`}
+              src={hotel.image || "/images/hotel-placeholder.jpg"}
+            />
+          </div>
+          <div class="p-6">
+            <div class="flex text-primary mb-2">
+              {[...Array(hotel.stars)].map(() => (
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+              ))}
+            </div>
+            <h3 class="text-xl font-bold mb-2">{hotel.name}</h3>
+            <p class="text-on-surface-variant text-sm mb-4">{hotel.description}</p>
+            <div class="flex justify-between items-center pt-4 border-t border-white/5">
+              <span class="text-primary font-bold">
+                {hotel.currency === "USD" ? "$" : ""}{hotel.price}{hotel.currency === "Bs." ? " Bs." : ""} <small class="text-secondary font-normal">/ noche</small>
+              </span>
+              {hotel.bookingUrl ? (
+                <a
+                  href={hotel.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-sm font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors"
+                >
+                  Reservar
+                </a>
+              ) : (
+                <button class="text-sm font-bold uppercase tracking-widest text-secondary cursor-not-allowed opacity-50">
+                  Reservar
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="mt-8 text-center md:hidden">
+      <a 
+        href="/hoteles" 
+        class="inline-flex items-center gap-2 px-6 py-3 bg-surface-container-high text-secondary font-bold rounded-md hover:text-primary hover:bg-surface-container-low transition-all"
       >
-        <div class="h-56 overflow-hidden">
-          <img
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            alt="Fachada elegante del Hotel Terminal Oruro"
-            src="/images/claymor.jpg"
-          />
-        </div>
-        <div class="p-6">
-          <div class="flex text-primary mb-2">
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-          </div>
-          <h3 class="text-xl font-bold mb-2">Hotel Claymor</h3>
-          <p class="text-on-surface-variant text-sm mb-4">
-            Cerca del centro histórico y la sede.
-          </p>
-          <div
-            class="flex justify-between items-center pt-4 border-t border-white/5"
-          >
-            <span class="text-primary font-bold"
-              >$45 <small class="text-secondary font-normal">/ noche</small
-              ></span
-            >
-            <button
-              class="text-sm font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors"
-              >Reservar</button
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- Hotel 2 -->
-      <div
-        class="group bg-surface-container-low rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all animate-on-scroll scale-up stagger-2"
-      >
-        <div class="h-56 overflow-hidden">
-          <img
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            alt="Interiores de lujo del Gran Hotel Oruro"
-            src="/images/sucre.jpg"
-          />
-        </div>
-        <div class="p-6">
-          <div class="flex text-primary mb-2">
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-          </div>
-          <h3 class="text-xl font-bold mb-2">Gran Hotel Sucre</h3>
-          <p class="text-on-surface-variant text-sm mb-4">
-            Excelencia y confort en el corazón de la ciudad.
-          </p>
-          <div
-            class="flex justify-between items-center pt-4 border-t border-white/5"
-          >
-            <span class="text-primary font-bold"
-              >$75 <small class="text-secondary font-normal">/ noche</small
-              ></span
-            >
-            <button
-              class="text-sm font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors"
-              >Reservar</button
-            >
-          </div>
-        </div>
-      </div>
-
-      <!-- Hotel 3 -->
-      <div
-        class="group bg-surface-container-low rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all animate-on-scroll scale-up stagger-3"
-      >
-        <div class="h-56 overflow-hidden">
-          <img
-            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-            alt="Hotel Eden Oruro con vistas panorámicas"
-            src="/images/eden.jpg"
-          />
-        </div>
-        <div class="p-6">
-          <div class="flex text-primary mb-2">
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-            <span
-              class="material-symbols-outlined text-sm"
-              style="font-variation-settings: 'FILL' 1;">star</span
-            >
-          </div>
-          <h3 class="text-xl font-bold mb-2">Hotel Eden</h3>
-          <p class="text-on-surface-variant text-sm mb-4">
-            Vistas panorámicas y servicios de spa.
-          </p>
-          <div
-            class="flex justify-between items-center pt-4 border-t border-white/5"
-          >
-            <span class="text-primary font-bold"
-              >$60 <small class="text-secondary font-normal">/ noche</small
-              ></span
-            >
-            <button
-              class="text-sm font-bold uppercase tracking-widest text-secondary hover:text-primary transition-colors"
-              >Reservar</button
-            >
-          </div>
-        </div>
-      </div>
+        Ver todos los hoteles
+        <span class="material-symbols-outlined text-xl">arrow_forward</span>
+      </a>
     </div>
   </div>
 </section>

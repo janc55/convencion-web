@@ -1,0 +1,101 @@
+---
+import { hotelsData } from "../data/hotels";
+import Layout from "../layouts/Layout.astro";
+
+const pageTitle = "Hoteles - Hospedaje para la Convención";
+---
+
+<Layout title={pageTitle}>
+  <main class="pt-20">
+    <section class="py-16 bg-surface">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12 animate-on-scroll">
+          <h1 class="font-headline text-5xl md:text-6xl text-on-surface mb-4">Hospedaje</h1>
+          <p class="text-on-surface-variant text-lg max-w-2xl mx-auto">
+            Opciones recomendadas con tarifas especiales para convencionistas.
+          </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {hotelsData.map((hotel, index) => (
+            <div
+              class="group bg-surface-container-low rounded-xl overflow-hidden border border-white/5 hover:border-primary/30 transition-all animate-on-scroll scale-up"
+              style={`animation-delay: ${index * 100}ms`}
+            >
+              <div class="h-56 overflow-hidden">
+                <img
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  alt={`${hotel.name} en Oruro`}
+                  src={hotel.image || "/images/hotel-placeholder.jpg"}
+                />
+              </div>
+              <div class="p-6">
+                <div class="flex text-primary mb-2">
+                  {[...Array(hotel.stars)].map(() => (
+                    <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+                  ))}
+                </div>
+                <h2 class="text-xl font-bold mb-2">{hotel.name}</h2>
+                <p class="text-on-surface-variant text-sm mb-4">{hotel.description}</p>
+                
+                {hotel.amenities && hotel.amenities.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {hotel.amenities.map((amenity) => (
+                      <span class="text-xs px-2 py-1 bg-surface-container-high rounded text-on-surface-variant">
+                        {amenity}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                {hotel.address && (
+                  <div class="flex items-center gap-2 text-sm text-secondary mb-2">
+                    <span class="material-symbols-outlined text-xs">location_on</span>
+                    <span>{hotel.address}</span>
+                  </div>
+                )}
+
+                {hotel.phone && (
+                  <div class="flex items-center gap-2 text-sm text-secondary mb-2">
+                    <span class="material-symbols-outlined text-xs">phone</span>
+                    <a href={`tel:${hotel.phone}`} class="hover:text-primary transition-colors">{hotel.phone}</a>
+                  </div>
+                )}
+
+                <div class="flex justify-between items-center pt-4 border-t border-white/5">
+                  <span class="text-primary font-bold text-lg">
+                    {hotel.currency === "USD" ? "$" : ""}{hotel.price}{hotel.currency === "Bs." ? " Bs." : ""} <small class="text-secondary font-normal">/ noche</small>
+                  </span>
+                  {hotel.bookingUrl ? (
+                    <a
+                      href={hotel.bookingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="px-4 py-2 bg-primary text-on-primary font-bold rounded-md hover:bg-tertiary transition-colors"
+                    >
+                      Reservar
+                    </a>
+                  ) : (
+                    <button class="px-4 py-2 bg-surface-container-high text-secondary font-bold rounded-md cursor-not-allowed opacity-50">
+                      Reservar
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="mt-12 text-center">
+          <a 
+            href="/" 
+            class="inline-flex items-center gap-2 px-6 py-3 bg-surface-container-high text-secondary font-bold rounded-md hover:text-primary hover:bg-surface-container-low transition-all"
+          >
+            <span class="material-symbols-outlined text-xl">arrow_back</span>
+            Volver al inicio
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

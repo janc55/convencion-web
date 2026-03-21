@@ -1,67 +1,97 @@
 ---
+import { agendaData } from "../../data/agenda";
 ---
 
 <section class="py-24 bg-surface-container-low" id="programa">
   <div class="max-w-4xl mx-auto px-6">
     <h2 class="font-headline text-4xl text-center text-on-surface mb-12 animate-on-scroll">Agenda de Actividades</h2>
     
-    <div class="flex justify-center gap-4 mb-12 animate-on-scroll stagger-1">
-      <button class="px-6 py-2 bg-primary text-on-primary font-bold rounded-md">Día 1</button>
-      <button class="px-6 py-2 bg-surface-container-high text-secondary font-bold rounded-md hover:text-primary transition-colors">Día 2</button>
-      <button class="px-6 py-2 bg-surface-container-high text-secondary font-bold rounded-md hover:text-primary transition-colors">Día 3</button>
+    <div id="day-tabs" class="flex flex-wrap justify-center gap-4 mb-12 animate-on-scroll stagger-1">
+      {agendaData.map((day, index) => (
+        <button 
+          data-day={index}
+          class={`px-4 py-2 font-bold rounded-md transition-all ${index === 0 ? 'bg-primary text-on-primary' : 'bg-surface-container-high text-secondary hover:text-primary'}`}
+        >
+          <span class="block text-xs opacity-70">{day.date}</span>
+          <span>{day.day}</span>
+        </button>
+      ))}
     </div>
 
-    <div class="relative pl-8 border-l-2 border-primary/30 space-y-12">
-      <!-- Event 1 -->
-      <div class="relative animate-on-scroll from-left stagger-1">
-        <div class="absolute -left-[41px] top-0 w-5 h-5 bg-primary rounded-full border-4 border-surface shadow-[0_0_10px_rgba(238,194,0,0.5)]"></div>
-        <div class="bg-surface-container-high p-6 rounded-xl hover:translate-x-2 transition-transform duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <span class="text-primary font-bold tracking-tighter text-xl">08:00 AM</span>
-            <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Registro de Delegados</h3>
-          <p class="text-on-surface-variant mb-4">Recepción y entrega de credenciales en el Hall Principal.</p>
-          <div class="flex items-center gap-4 text-sm text-secondary">
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Lobby Principal</span>
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">person</span> Comité Organizador</span>
-          </div>
+    <div id="agenda-content">
+      {agendaData.map((day, dayIndex) => (
+        <div 
+          id={`day-${dayIndex}`}
+          class={`day-content ${dayIndex !== 0 ? 'hidden' : ''}`}
+        >
+          {day.items.length > 0 ? (
+            <div class="relative pl-8 border-l-2 border-primary/30 space-y-12">
+              {day.items.map((item, itemIndex) => (
+                <div class={`relative animate-on-scroll from-left ${itemIndex === 0 ? 'stagger-1' : itemIndex === 1 ? 'stagger-2' : 'stagger-3'}`}>
+                  <div class={`absolute -left-[41px] top-0 w-5 h-5 bg-primary rounded-full border-4 border-surface ${itemIndex === 0 ? 'shadow-[0_0_10px_rgba(238,194,0,0.5)]' : ''}`}></div>
+                  <div class="bg-surface-container-high p-6 rounded-xl hover:translate-x-2 transition-transform duration-300">
+                    <div class="flex justify-between items-start mb-4">
+                      <span class="text-primary font-bold tracking-tighter text-xl">{item.time}</span>
+                      <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">{item.icon}</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">{item.title}</h3>
+                    <p class="text-on-surface-variant mb-4">{item.description}</p>
+                    {(item.location || item.responsible) && (
+                      <div class="flex flex-wrap items-center gap-4 text-sm text-secondary">
+                        {item.location && (
+                          <span class="flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs">location_on</span> {item.location}
+                          </span>
+                        )}
+                        {item.responsible && (
+                          <span class="flex items-center gap-1">
+                            <span class="material-symbols-outlined text-xs">person</span> {item.responsible}
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div class="text-center py-12 text-on-surface-variant">
+              <span class="material-symbols-outlined text-6xl opacity-30 mb-4">event_busy</span>
+              <p class="text-lg">Próximamente</p>
+            </div>
+          )}
         </div>
-      </div>
-
-      <!-- Event 2 -->
-      <div class="relative animate-on-scroll from-left stagger-2">
-        <div class="absolute -left-[41px] top-0 w-5 h-5 bg-primary rounded-full border-4 border-surface"></div>
-        <div class="bg-surface-container-high p-6 rounded-xl hover:translate-x-2 transition-transform duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <span class="text-primary font-bold tracking-tighter text-xl">10:30 AM</span>
-            <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">stars</span>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Ceremonia de Apertura</h3>
-          <p class="text-on-surface-variant mb-4">Inauguración oficial con presencia de autoridades distritales e internacionales.</p>
-          <div class="flex items-center gap-4 text-sm text-secondary">
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Auditorio Magno</span>
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">person</span> Gobernador de Distrito</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Event 3 -->
-      <div class="relative animate-on-scroll from-left stagger-3">
-        <div class="absolute -left-[41px] top-0 w-5 h-5 bg-primary rounded-full border-4 border-surface"></div>
-        <div class="bg-surface-container-high p-6 rounded-xl hover:translate-x-2 transition-transform duration-300">
-          <div class="flex justify-between items-start mb-4">
-            <span class="text-primary font-bold tracking-tighter text-xl">08:00 PM</span>
-            <span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">nightlife</span>
-          </div>
-          <h3 class="text-xl font-bold mb-2">Cena de Gala Folklórica</h3>
-          <p class="text-on-surface-variant mb-4">Noche de confraternización con demostración de danzas tradicionales de Oruro.</p>
-          <div class="flex items-center gap-4 text-sm text-secondary">
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">location_on</span> Salon Imperial</span>
-            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-xs">person</span> Conjunto Tradicional</span>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
+
+<script>
+  const tabsContainer = document.getElementById('day-tabs');
+  const dayContents = document.querySelectorAll('.day-content');
+
+  tabsContainer?.addEventListener('click', (e) => {
+    const button = (e.target as HTMLElement).closest('button');
+    if (!button) return;
+
+    const dayIndex = button.dataset.day;
+
+    tabsContainer.querySelectorAll('button').forEach((btn) => {
+      btn.classList.remove('bg-primary', 'text-on-primary');
+      btn.classList.add('bg-surface-container-high', 'text-secondary');
+    });
+    button.classList.remove('bg-surface-container-high', 'text-secondary');
+    button.classList.add('bg-primary', 'text-on-primary');
+
+    dayContents.forEach((content, index) => {
+      if (index.toString() === dayIndex) {
+        content.classList.remove('hidden');
+        content.querySelectorAll('.animate-on-scroll').forEach((el) => {
+          el.classList.add('in-view');
+        });
+      } else {
+        content.classList.add('hidden');
+      }
+    });
+  });
+</script>
