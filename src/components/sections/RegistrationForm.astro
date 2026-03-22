@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <section class="py-24 bg-[#0c3569] relative" id="registro">
@@ -65,8 +66,8 @@
                 <select
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                 >
-                  <option class="bg-surface">Distrito B-1</option>
-                  <option class="bg-surface">Distrito B-2</option>
+                  <option class="bg-surface">Distrito S1</option>
+                  <option class="bg-surface">Distrito S2</option>
                   <option class="bg-surface">Otro</option>
                 </select>
               </div>
@@ -227,7 +228,6 @@
                       class="max-h-32 object-contain rounded-lg mx-auto cursor-pointer hover:opacity-80 transition-opacity"
                       alt="Preview"
                     />
-
                   </div>
                   <div id="voucher-placeholder">
                     <svg
@@ -287,7 +287,6 @@
                 id="qr-pago-img"
                 class="w-64 h-64 object-contain rounded-lg bg-white p-2 shadow-lg cursor-pointer hover:opacity-80 transition-opacity"
               />
-
             </div>
             <div
               class="text-sm text-on-surface space-y-2 bg-surface/50 rounded-lg p-4"
@@ -313,19 +312,45 @@
   </div>
 </section>
 
-<div id="voucher-modal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true">
-  <button id="close-modal" class="absolute top-4 right-4 text-white hover:text-primary transition-colors" aria-label="Cerrar">
+<div
+  id="voucher-modal"
+  class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+>
+  <button
+    id="close-modal"
+    class="absolute top-4 right-4 text-white hover:text-primary transition-colors"
+    aria-label="Cerrar"
+  >
     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M6 18L18 6M6 6l12 12"></path>
     </svg>
   </button>
-  <button id="download-voucher" class="absolute top-4 left-4 bg-primary text-on-primary px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-tertiary transition-colors" aria-label="Descargar">
+  <button
+    id="download-voucher"
+    class="absolute top-4 left-4 bg-primary text-on-primary px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-tertiary transition-colors"
+    aria-label="Descargar"
+  >
     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+      ></path>
     </svg>
     <span>Descargar</span>
   </button>
-  <img id="voucher-modal-img" class="max-w-full max-h-[85vh] object-contain rounded-lg" alt="Imagen ampliada" />
+  <img
+    id="voucher-modal-img"
+    class="max-w-full max-h-[85vh] object-contain rounded-lg"
+    alt="Imagen ampliada"
+  />
 </div>
 
 <script>
@@ -359,7 +384,13 @@
   updateCountdown();
   setInterval(updateCountdown, 60000);
 
-  function setupDropzone(dropzoneId: string, inputId: string, previewId: string, previewContainerId: string, placeholderId: string) {
+  function setupDropzone(
+    dropzoneId: string,
+    inputId: string,
+    previewId: string,
+    previewContainerId: string,
+    placeholderId: string,
+  ) {
     const dropzone = document.getElementById(dropzoneId);
     const input = document.getElementById(inputId) as HTMLInputElement;
     const preview = document.getElementById(previewId) as HTMLImageElement;
@@ -369,10 +400,16 @@
     if (!dropzone || !input) return;
 
     dropzone.addEventListener("click", (e) => {
-      if (e.target === preview && preview.src && !preview.src.includes("data:image/svg")) {
+      if (
+        e.target === preview &&
+        preview.src &&
+        !preview.src.includes("data:image/svg")
+      ) {
         e.stopPropagation();
         const modal = document.getElementById("voucher-modal");
-        const modalImg = document.getElementById("voucher-modal-img") as HTMLImageElement;
+        const modalImg = document.getElementById(
+          "voucher-modal-img",
+        ) as HTMLImageElement;
         if (modal && modalImg) {
           modalImg.src = preview.src;
           modal.classList.remove("hidden");
@@ -455,7 +492,9 @@
   );
 
   const modal = document.getElementById("voucher-modal");
-  const modalImg = document.getElementById("voucher-modal-img") as HTMLImageElement;
+  const modalImg = document.getElementById(
+    "voucher-modal-img",
+  ) as HTMLImageElement;
   const closeBtn = document.getElementById("close-modal");
   const downloadBtn = document.getElementById("download-voucher");
   const qrImg = document.getElementById("qr-pago-img") as HTMLImageElement;
