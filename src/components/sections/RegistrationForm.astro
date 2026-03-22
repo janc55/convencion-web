@@ -1,104 +1,343 @@
 ---
-const registrationDeadline = new Date("2026-04-20").getTime();
 ---
 
 <section class="py-24 bg-[#0c3569] relative" id="registro">
   <div class="absolute inset-0 hex-pattern opacity-10"></div>
-  <div class="max-w-3xl mx-auto px-6 relative z-10">
-    <div class="bg-surface-container-high p-8 md:p-12 rounded-2xl shadow-2xl border border-primary/20 animate-on-scroll scale-up">
-      <h2 class="font-headline text-4xl text-center text-primary mb-4">Registro de Participantes</h2>
-      <p class="text-center text-secondary mb-6">Complete el formulario para confirmar su asistencia a la convención.</p>
-      
-      <div id="registration-countdown" class="text-center mb-8 py-4 px-6 bg-primary/10 border border-primary/30 rounded-lg">
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    <div
+      class="bg-surface-container-high p-8 md:p-12 rounded-2xl shadow-2xl border border-primary/20 animate-on-scroll scale-up"
+    >
+      <h2 class="font-headline text-4xl text-center text-primary mb-4">
+        Registro de Participantes
+      </h2>
+      <p class="text-center text-secondary mb-6">
+        Complete el formulario para confirmar su asistencia a la convención.
+      </p>
+
+      <div
+        id="registration-countdown"
+        class="text-center mb-8 py-4 px-6 bg-primary/10 border border-primary/30 rounded-lg"
+      >
         <p class="text-lg text-on-surface">
-          <span class="font-bold text-primary text-2xl" id="days-remaining">--</span>
+          <span class="font-bold text-primary text-2xl" id="days-remaining"
+            >--</span
+          >
           <span class="text-on-surface"> días para el cierre de registro</span>
         </p>
-        <p class="text-sm text-secondary mt-1">Fecha límite: 20 de abril de 2026</p>
+        <p class="text-sm text-secondary mt-1">
+          Fecha límite: 20 de abril de 2026
+        </p>
       </div>
 
-      <form class="space-y-6">
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Nombre Completo</label>
-            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Ej. Juan Pérez" type="text" />
-          </div>
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Club de Leones</label>
-            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Nombre de su Club" type="text" />
-          </div>
+      <div class="grid lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-2">
+          <form class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Nombre Completo</label
+                >
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  placeholder="Ej. Juan Pérez"
+                  type="text"
+                />
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Club de Leones</label
+                >
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  placeholder="Nombre de su Club"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Distrito</label
+                >
+                <select
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                >
+                  <option class="bg-surface">Distrito B-1</option>
+                  <option class="bg-surface">Distrito B-2</option>
+                  <option class="bg-surface">Otro</option>
+                </select>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >País</label
+                >
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  type="text"
+                  value="Bolivia"
+                />
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Cartera</label
+                >
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  placeholder="Ej. Presidente"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Correo Electrónico</label
+                >
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  placeholder="usuario@correo.com"
+                  type="email"
+                />
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Teléfono / WhatsApp</label
+                >
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  placeholder="+591 ..."
+                  type="tel"
+                />
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Tipo de Participante</label
+                >
+                <div class="flex gap-8 pt-2">
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input
+                      class="text-primary focus:ring-primary bg-transparent border-primary/40"
+                      name="type"
+                      type="radio"
+                    />
+                    <span class="text-sm">Delegado</span>
+                  </label>
+                  <label class="flex items-center gap-2 cursor-pointer">
+                    <input
+                      class="text-primary focus:ring-primary bg-transparent border-primary/40"
+                      name="type"
+                      type="radio"
+                    />
+                    <span class="text-sm">Invitado</span>
+                  </label>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Nro. de León <span class="text-secondary font-normal"
+                    >(Opcional)</span
+                  ></label
+                >
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  placeholder="Ej. 123456"
+                  type="text"
+                />
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Foto para Credencial</label
+                >
+                <div
+                  class="border-2 border-dashed border-outline-variant rounded-lg p-4 text-center hover:border-primary transition-colors cursor-pointer"
+                  id="photo-dropzone"
+                >
+                  <input
+                    class="hidden"
+                    id="photo-input"
+                    name="photo"
+                    type="file"
+                    accept="image/*"
+                  />
+                  <div id="photo-preview-container" class="hidden mb-3">
+                    <img
+                      id="photo-preview"
+                      class="w-32 h-32 object-cover rounded-lg mx-auto"
+                      alt="Preview"
+                    />
+                  </div>
+                  <div id="photo-placeholder">
+                    <svg
+                      class="w-8 h-8 mx-auto text-secondary mb-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                      ></path>
+                    </svg>
+                    <p class="text-sm text-secondary">
+                      Click o arrastre para subir
+                    </p>
+                    <p class="text-xs text-secondary/70 mt-1">
+                      JPG, PNG (máx. 2MB)
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Voucher de Pago <span class="text-secondary font-normal"
+                    >(Opcional)</span
+                  ></label
+                >
+                <div
+                  class="border-2 border-dashed border-outline-variant rounded-lg p-4 text-center hover:border-primary transition-colors cursor-pointer"
+                  id="voucher-dropzone"
+                >
+                  <input
+                    class="hidden"
+                    id="voucher-input"
+                    name="voucher"
+                    type="file"
+                    accept="image/*,.pdf"
+                  />
+                  <div id="voucher-preview-container" class="hidden mb-3">
+                    <img
+                      id="voucher-preview"
+                      class="max-h-32 object-contain rounded-lg mx-auto cursor-pointer hover:opacity-80 transition-opacity"
+                      alt="Preview"
+                    />
+
+                  </div>
+                  <div id="voucher-placeholder">
+                    <svg
+                      class="w-8 h-8 mx-auto text-secondary mb-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      ></path>
+                    </svg>
+                    <p class="text-sm text-secondary">Subir voucher</p>
+                    <p class="text-xs text-secondary/70 mt-1">JPG, PNG o PDF</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="space-y-2">
+              <label
+                class="text-xs uppercase tracking-widest text-primary font-bold"
+                >Requerimientos Especiales</label
+              >
+              <textarea
+                class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                placeholder="Dietas, asistencia, etc."
+                rows="2"></textarea>
+            </div>
+            <div class="pt-8">
+              <button
+                class="w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-xl hover:bg-tertiary transition-all active:scale-[0.98]"
+                type="submit"
+              >
+                Confirmar Registro
+              </button>
+            </div>
+          </form>
         </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Distrito</label>
-            <select class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all">
-              <option class="bg-surface">Distrito B-1</option>
-              <option class="bg-surface">Distrito B-2</option>
-              <option class="bg-surface">Otro</option>
-            </select>
-          </div>
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">País</label>
-            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" type="text" value="Bolivia" />
-          </div>
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Cartera</label>
-            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Ej. Presidente" type="text" />
-          </div>
-        </div>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Correo Electrónico</label>
-            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="usuario@correo.com" type="email" />
-          </div>
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Teléfono / WhatsApp</label>
-            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="+591 ..." type="tel" />
-          </div>
-        </div>
-        <div class="grid md:grid-cols-2 gap-6">
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Tipo de Participante</label>
-            <div class="flex gap-8 pt-2">
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input class="text-primary focus:ring-primary bg-transparent border-primary/40" name="type" type="radio" />
-                <span class="text-sm">Delegado</span>
-              </label>
-              <label class="flex items-center gap-2 cursor-pointer">
-                <input class="text-primary focus:ring-primary bg-transparent border-primary/40" name="type" type="radio" />
-                <span class="text-sm">Invitado</span>
-              </label>
+
+        <div class="lg:col-span-1">
+          <div
+            class="bg-primary/10 border border-primary/30 rounded-xl p-6 sticky top-8"
+          >
+            <h3 class="font-headline text-2xl text-primary mb-4 text-center">
+              Información de Pago
+            </h3>
+            <p class="text-sm text-secondary text-center mb-4">
+              Escanee el código QR para realizar el pago de su inscripción.
+            </p>
+            <div class="flex justify-center mb-4">
+              <img
+                src="/images/qr-pago.jpeg"
+                alt="Código QR para pago"
+                id="qr-pago-img"
+                class="w-64 h-64 object-contain rounded-lg bg-white p-2 shadow-lg cursor-pointer hover:opacity-80 transition-opacity"
+              />
+
+            </div>
+            <div
+              class="text-sm text-on-surface space-y-2 bg-surface/50 rounded-lg p-4"
+            >
+              <p class="font-bold text-primary">Datos para transferencia:</p>
+              <p>
+                <span class="text-secondary">Banco:</span> Banco Mercantil Santa Cruz
+              </p>
+              <p><span class="text-secondary">Cuenta:</span> 1004409716</p>
+              <p>
+                <span class="text-secondary">Nombre:</span> Patricia Pilar Gonzales
+                Gemio
+              </p>
+              <p class="text-xs text-secondary mt-3">
+                Una vez realizado el pago, suba su voucher en el formulario o
+                envíelo por WhatsApp.
+              </p>
             </div>
           </div>
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-primary font-bold">Nro. de León <span class="text-secondary font-normal">(Opcional)</span></label>
-            <input class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Ej. 123456" type="text" />
-          </div>
         </div>
-        <div class="space-y-2">
-          <label class="text-xs uppercase tracking-widest text-primary font-bold">Requerimientos Especiales</label>
-          <textarea class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all" placeholder="Dietas, asistencia, etc." rows="2"></textarea>
-        </div>
-        <div class="pt-8">
-          <button class="w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-xl hover:bg-tertiary transition-all active:scale-[0.98]" type="submit">
-            Confirmar Registro
-          </button>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 </section>
 
+<div id="voucher-modal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4" role="dialog" aria-modal="true">
+  <button id="close-modal" class="absolute top-4 right-4 text-white hover:text-primary transition-colors" aria-label="Cerrar">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+  </button>
+  <button id="download-voucher" class="absolute top-4 left-4 bg-primary text-on-primary px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-tertiary transition-colors" aria-label="Descargar">
+    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+    </svg>
+    <span>Descargar</span>
+  </button>
+  <img id="voucher-modal-img" class="max-w-full max-h-[85vh] object-contain rounded-lg" alt="Imagen ampliada" />
+</div>
+
 <script>
   const deadline = new Date("2026-04-20").getTime();
-  
+
   const updateCountdown = () => {
     const now = new Date().getTime();
     const distance = deadline - now;
-    
+
     const daysEl = document.getElementById("days-remaining");
     const countdownEl = document.getElementById("registration-countdown");
-    
+
     if (daysEl) {
       if (distance < 0) {
         daysEl.innerText = "0";
@@ -116,7 +355,149 @@ const registrationDeadline = new Date("2026-04-20").getTime();
       }
     }
   };
-  
+
   updateCountdown();
   setInterval(updateCountdown, 60000);
+
+  function setupDropzone(dropzoneId: string, inputId: string, previewId: string, previewContainerId: string, placeholderId: string) {
+    const dropzone = document.getElementById(dropzoneId);
+    const input = document.getElementById(inputId) as HTMLInputElement;
+    const preview = document.getElementById(previewId) as HTMLImageElement;
+    const previewContainer = document.getElementById(previewContainerId);
+    const placeholder = document.getElementById(placeholderId);
+
+    if (!dropzone || !input) return;
+
+    dropzone.addEventListener("click", (e) => {
+      if (e.target === preview && preview.src && !preview.src.includes("data:image/svg")) {
+        e.stopPropagation();
+        const modal = document.getElementById("voucher-modal");
+        const modalImg = document.getElementById("voucher-modal-img") as HTMLImageElement;
+        if (modal && modalImg) {
+          modalImg.src = preview.src;
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          document.body.style.overflow = "hidden";
+        }
+        return;
+      }
+      if (preview && !preview.classList.contains("hidden")) return;
+      input.click();
+    });
+
+    dropzone.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      dropzone.classList.add("border-primary", "bg-primary/5");
+    });
+
+    dropzone.addEventListener("dragleave", () => {
+      dropzone.classList.remove("border-primary", "bg-primary/5");
+    });
+
+    dropzone.addEventListener("drop", (e) => {
+      e.preventDefault();
+      dropzone.classList.remove("border-primary", "bg-primary/5");
+      const files = e.dataTransfer?.files;
+      if (files && files.length > 0) {
+        (input as HTMLInputElement).files = files;
+        handleFile(files[0]);
+      }
+    });
+
+    input.addEventListener("change", () => {
+      if (input.files && input.files.length > 0) {
+        handleFile(input.files[0]);
+      }
+    });
+
+    function handleFile(file: File) {
+      if (!file.type.startsWith("image/") && !file.type.includes("pdf")) return;
+
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if (preview) {
+            preview.src = e.target?.result as string;
+            preview.classList.remove("hidden");
+          }
+          if (previewContainer) previewContainer.classList.remove("hidden");
+          if (placeholder) placeholder.classList.add("hidden");
+        };
+        reader.readAsDataURL(file);
+      } else {
+        if (previewContainer) previewContainer.classList.remove("hidden");
+        if (placeholder) placeholder.classList.add("hidden");
+        if (preview) {
+          preview.src =
+            "data:image/svg+xml," +
+            encodeURIComponent(
+              '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="%236b7280" stroke-width="2"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>',
+            );
+          preview.classList.remove("hidden");
+        }
+      }
+    }
+  }
+
+  setupDropzone(
+    "photo-dropzone",
+    "photo-input",
+    "photo-preview",
+    "photo-preview-container",
+    "photo-placeholder",
+  );
+  setupDropzone(
+    "voucher-dropzone",
+    "voucher-input",
+    "voucher-preview",
+    "voucher-preview-container",
+    "voucher-placeholder",
+  );
+
+  const modal = document.getElementById("voucher-modal");
+  const modalImg = document.getElementById("voucher-modal-img") as HTMLImageElement;
+  const closeBtn = document.getElementById("close-modal");
+  const downloadBtn = document.getElementById("download-voucher");
+  const qrImg = document.getElementById("qr-pago-img") as HTMLImageElement;
+
+  let currentVoucherName = "voucher";
+
+  if (modal && modalImg && closeBtn && downloadBtn) {
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    downloadBtn.addEventListener("click", () => {
+      if (modalImg.src) {
+        const link = document.createElement("a");
+        link.href = modalImg.src;
+        link.download = currentVoucherName;
+        link.click();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    }
+  }
+
+  // QR image click-to-enlarge
+  if (qrImg && modal && modalImg) {
+    qrImg.addEventListener("click", () => {
+      modalImg.src = qrImg.src;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    });
+  }
 </script>

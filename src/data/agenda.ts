@@ -19,8 +19,16 @@ export const agendaData: AgendaDay[] = [
     date: "30 de abril",
     items: [
       {
+        time: "Todo el día",
+        title: "Llegada de delegaciones a Oruro",
+        description: "Entrega de CREDENCIALES en la Sede del Club",
+        icon: "luggage",
+        location: "Sede del Club",
+        responsible: "Comité Organizador",
+      },
+      {
         time: "09:00",
-        title: "Visita protocolar a autoridades",
+        title: "Visita protocolar a autoridades de la Ciudad",
         description: "Reunión protocolar con autoridades locales.",
         icon: "handshake",
         location: "Por definir",
@@ -28,10 +36,10 @@ export const agendaData: AgendaDay[] = [
       },
       {
         time: "10:00",
-        title: "Visita y Fotografía Oficial",
+        title: "Visita al Monumento de la Virgen del Socavón y Fotografía Oficial",
         description: "Sesión fotográfica oficial de las delegaciones.",
         icon: "photo_camera",
-        location: "Por definir",
+        location: "Monumento de la Virgen del Socavón",
         responsible: "Comité Organizador",
       },
       {
@@ -39,7 +47,7 @@ export const agendaData: AgendaDay[] = [
         title: "Misa de Acción de Gracias",
         description: "Ceremonia religiosa de agradecimiento.",
         icon: "church",
-        location: "Por definir",
+        location: "Basílica Menor del Socavón",
         responsible: "Comité Organizador",
       },
       {
@@ -47,7 +55,7 @@ export const agendaData: AgendaDay[] = [
         title: "Desfile por delegaciones",
         description: "Desfile inaugural de los participantes.",
         icon: "flag",
-        location: "Por definir",
+        location: "Calles céntricas de la ciudad",
         responsible: "Comité Organizador",
       },
       {
