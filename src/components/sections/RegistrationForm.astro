@@ -32,19 +32,36 @@
 
       <div class="grid lg:grid-cols-3 gap-8">
         <div class="lg:col-span-2">
-          <form class="space-y-6">
+          <form id="registration-form" class="space-y-6">
             <div class="grid md:grid-cols-2 gap-6">
               <div class="space-y-2">
                 <label
                   class="text-xs uppercase tracking-widest text-primary font-bold"
-                  >Nombre Completo</label
+                  >Nombres</label
                 >
                 <input
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
-                  placeholder="Ej. Juan Pérez"
+                  placeholder="Ej. Juan"
                   type="text"
+                  name="first_name"
+                  required
                 />
               </div>
+              <div class="space-y-2">
+                <label
+                  class="text-xs uppercase tracking-widest text-primary font-bold"
+                  >Apellidos</label
+                >
+                <input
+                  class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  placeholder="Ej. Pérez"
+                  type="text"
+                  name="last_name"
+                  required
+                />
+              </div>
+            </div>
+            <div class="grid md:grid-cols-1 gap-6">
               <div class="space-y-2">
                 <label
                   class="text-xs uppercase tracking-widest text-primary font-bold"
@@ -54,6 +71,7 @@
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                   placeholder="Nombre de su Club"
                   type="text"
+                  name="club"
                 />
               </div>
             </div>
@@ -65,10 +83,11 @@
                 >
                 <select
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                  name="district"
                 >
-                  <option class="bg-surface">Distrito S1</option>
-                  <option class="bg-surface">Distrito S2</option>
-                  <option class="bg-surface">Otro</option>
+                  <option class="bg-surface" value="Distrito S1">Distrito S1</option>
+                  <option class="bg-surface" value="Distrito S2">Distrito S2</option>
+                  <option class="bg-surface" value="Otro">Otro</option>
                 </select>
               </div>
               <div class="space-y-2">
@@ -80,6 +99,7 @@
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                   type="text"
                   value="Bolivia"
+                  name="country"
                 />
               </div>
               <div class="space-y-2">
@@ -91,6 +111,7 @@
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                   placeholder="Ej. Presidente"
                   type="text"
+                  name="role_title"
                 />
               </div>
             </div>
@@ -104,6 +125,8 @@
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                   placeholder="usuario@correo.com"
                   type="email"
+                  name="email"
+                  required
                 />
               </div>
               <div class="space-y-2">
@@ -115,6 +138,7 @@
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                   placeholder="+591 ..."
                   type="tel"
+                  name="phone"
                 />
               </div>
             </div>
@@ -128,16 +152,19 @@
                   <label class="flex items-center gap-2 cursor-pointer">
                     <input
                       class="text-primary focus:ring-primary bg-transparent border-primary/40"
-                      name="type"
+                      name="participant_type"
                       type="radio"
+                      value="delegado"
+                      required
                     />
                     <span class="text-sm">Delegado</span>
                   </label>
                   <label class="flex items-center gap-2 cursor-pointer">
                     <input
                       class="text-primary focus:ring-primary bg-transparent border-primary/40"
-                      name="type"
+                      name="participant_type"
                       type="radio"
+                      value="invitado"
                     />
                     <span class="text-sm">Invitado</span>
                   </label>
@@ -154,6 +181,7 @@
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                   placeholder="Ej. 123456"
                   type="text"
+                  name="lion_number"
                 />
               </div>
             </div>
@@ -177,7 +205,7 @@
                   <div id="photo-preview-container" class="hidden mb-3">
                     <img
                       id="photo-preview"
-                      class="w-32 h-32 object-cover rounded-lg mx-auto"
+                      class="w-32 h-32 object-cover rounded-lg mx-auto hidden"
                       alt="Preview"
                     />
                   </div>
@@ -225,7 +253,7 @@
                   <div id="voucher-preview-container" class="hidden mb-3">
                     <img
                       id="voucher-preview"
-                      class="max-h-32 object-contain rounded-lg mx-auto cursor-pointer hover:opacity-80 transition-opacity"
+                      class="max-h-32 object-contain rounded-lg mx-auto cursor-pointer hover:opacity-80 transition-opacity hidden"
                       alt="Preview"
                     />
                   </div>
@@ -257,22 +285,16 @@
               <textarea
                 class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                 placeholder="Dietas, asistencia, etc."
-                rows="2"></textarea>
+                rows="2"
+                name="special_requirements"></textarea>
             </div>
             <div class="pt-8">
-              <div id="registration-disabled" class="w-full bg-surface/50 border-2 border-dashed border-outline-variant text-on-surface font-medium py-4 rounded-md text-center">
-                <p>El registro estará disponible desde el</p>
-                <p class="text-primary font-bold mt-1">23 de marzo a las 9:00</p>
-              </div>
-              <!-- === PARA HABILITAR EL REGISTRO: Descomenta el siguiente bloque y elimina el div de arriba (registration-disabled) === -->
-              <!--
               <button
                 class="w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-xl hover:bg-tertiary transition-all active:scale-[0.98]"
                 type="submit"
               >
                 Confirmar Registro
               </button>
-              -->
             </div>
           </form>
         </div>
@@ -425,7 +447,7 @@
         }
         return;
       }
-      if (preview && !preview.classList.contains("hidden")) return;
+
       input.click();
     });
 
@@ -547,35 +569,99 @@
     });
   }
 
-  // === AUTO-HABILITAR REGISTRO (23 de marzo 2026 9:00) ===
-  const registrationOpenDate = new Date("2026-03-23T09:00:00").getTime();
 
-  const enableRegistration = () => {
-    const disabledMsg = document.getElementById("registration-disabled");
-    const form = document.querySelector("form");
 
-    if (disabledMsg && form) {
-      disabledMsg.remove();
+  // === FORM SUBMISSION ===
+  const registrationForm = document.getElementById("registration-form") as HTMLFormElement;
 
-      const btn = document.createElement("button");
-      btn.type = "submit";
-      btn.className = "w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-xl hover:bg-tertiary transition-all active:scale-[0.98]";
-      btn.textContent = "Confirmar Registro";
+  if (registrationForm) {
+    registrationForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-      const div = document.createElement("div");
-      div.className = "pt-8";
-      div.appendChild(btn);
+      const submitBtn = registrationForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      if (!submitBtn) return;
 
-      form.appendChild(div);
+      // Show loading state
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Registrando...";
+      submitBtn.classList.add("opacity-70", "cursor-wait");
+
+      try {
+        const formData = new FormData(registrationForm);
+
+        // Add files from dropzone inputs (they might not be in the form natively)
+        const photoInput = document.getElementById("photo-input") as HTMLInputElement;
+        const voucherInput = document.getElementById("voucher-input") as HTMLInputElement;
+
+        if (photoInput?.files?.[0]) {
+          formData.set("photo", photoInput.files[0]);
+        }
+        if (voucherInput?.files?.[0]) {
+          formData.set("voucher", voucherInput.files[0]);
+        }
+
+        const response = await fetch("/api/register", {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Show success message
+          const formContainer = registrationForm.closest(".lg\\:col-span-2");
+          if (formContainer) {
+            formContainer.innerHTML = `
+              <div class="text-center py-12 space-y-6">
+                <div class="w-20 h-20 mx-auto bg-green-500/20 rounded-full flex items-center justify-center">
+                  <svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <h3 class="font-headline text-3xl text-primary">¡Registro Exitoso!</h3>
+                <p class="text-on-surface-variant text-lg">Su registro ha sido recibido correctamente.</p>
+                <div class="bg-primary/10 border border-primary/30 rounded-lg p-6 inline-block">
+                  <p class="text-sm text-secondary mb-1">Su código de registro es:</p>
+                  <p class="text-3xl font-bold text-primary tracking-widest">${result.registration_code}</p>
+                </div>
+                <p class="text-sm text-secondary">Guarde este código, lo necesitará para recoger su credencial.</p>
+              </div>
+            `;
+          }
+        } else {
+          // Show error
+          showFormError(result.error || "Error al procesar el registro.");
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          submitBtn.classList.remove("opacity-70", "cursor-wait");
+        }
+      } catch (err) {
+        showFormError("Error de conexión. Verifique su internet e inténtelo de nuevo.");
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        submitBtn.classList.remove("opacity-70", "cursor-wait");
+      }
+    });
+  }
+
+  function showFormError(message: string) {
+    // Remove existing error if any
+    const existing = document.getElementById("form-error-msg");
+    if (existing) existing.remove();
+
+    const errorDiv = document.createElement("div");
+    errorDiv.id = "form-error-msg";
+    errorDiv.className = "bg-red-500/10 border border-red-500/30 text-red-400 rounded-lg p-4 text-center text-sm mt-4";
+    errorDiv.textContent = message;
+
+    const form = document.getElementById("registration-form");
+    if (form) {
+      form.insertBefore(errorDiv, form.firstChild);
+      errorDiv.scrollIntoView({ behavior: "smooth", block: "center" });
+
+      // Auto-remove after 8 seconds
+      setTimeout(() => errorDiv.remove(), 8000);
     }
-  };
-
-  const checkRegistration = () => {
-    if (new Date().getTime() >= registrationOpenDate) {
-      enableRegistration();
-    }
-  };
-
-  checkRegistration();
-  setInterval(checkRegistration, 60000);
+  }
 </script>
