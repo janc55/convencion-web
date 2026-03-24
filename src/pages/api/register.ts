@@ -3,6 +3,11 @@ import { supabase } from "../../db/supabase";
 
 export const prerender = false;
 
+console.log("[DEBUG] Environment check:");
+console.log("[DEBUG] SUPABASE_URL set:", !!import.meta.env.SUPABASE_URL);
+console.log("[DEBUG] SUPABASE_KEY set:", !!import.meta.env.SUPABASE_KEY);
+console.log("[DEBUG] SUPABASE_URL value:", import.meta.env.SUPABASE_URL);
+
 function generateRegistrationCode(): string {
   const year = new Date().getFullYear().toString().slice(-2);
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -22,6 +27,7 @@ function getFileExtension(filename: string): string {
 }
 
 export const POST: APIRoute = async ({ request }) => {
+  console.log("[DEBUG] POST /api/register called");
   try {
     const formData = await request.formData();
 
@@ -166,8 +172,13 @@ export const POST: APIRoute = async ({ request }) => {
     );
   } catch (err) {
     console.error("Unexpected error:", err);
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    console.log("[DEBUG] Full error:", errorMessage);
     return new Response(
-      JSON.stringify({ error: "Error inesperado. Inténtelo de nuevo." }),
+      JSON.stringify({ 
+        error: "Error inesperado. Inténtelo de nuevo.",
+        debug: errorMessage 
+      }),
       { status: 500, headers: { "Content-Type": "application/json" } }
     );
   }
