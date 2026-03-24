@@ -85,8 +85,12 @@
                   class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
                   name="district"
                 >
-                  <option class="bg-surface" value="Distrito S1">Distrito S1</option>
-                  <option class="bg-surface" value="Distrito S2">Distrito S2</option>
+                  <option class="bg-surface" value="Distrito S1"
+                    >Distrito S1</option
+                  >
+                  <option class="bg-surface" value="Distrito S2"
+                    >Distrito S2</option
+                  >
                   <option class="bg-surface" value="Otro">Otro</option>
                 </select>
               </div>
@@ -288,16 +292,12 @@
                 rows="2"
                 name="special_requirements"></textarea>
             </div>
-            <div class="pt-8 space-y-4 text-center">
-              <p class="text-primary font-bold bg-primary/10 py-3 rounded-lg border border-primary/30 animate-pulse">
-                🚀 El registro estará disponible hoy 24 de marzo a las 13:00
-              </p>
+            <div class="pt-8">
               <button
-                class="w-full bg-surface-variant text-on-surface-variant font-bold py-4 rounded-md shadow-lg cursor-not-allowed opacity-60"
-                type="button"
-                disabled
+                class="w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-xl hover:bg-tertiary transition-all active:scale-[0.98]"
+                type="submit"
               >
-                Registro Inhabilitado hasta las 13:00
+                Confirmar Registro
               </button>
             </div>
           </form>
@@ -326,11 +326,12 @@
             >
               <p class="font-bold text-primary">Datos para transferencia:</p>
               <p>
-                <span class="text-secondary">Banco:</span> Banco Económico 
+                <span class="text-secondary">Banco:</span> Banco Económico
               </p>
               <p><span class="text-secondary">Cuenta:</span> 4101522997</p>
               <p>
-                <span class="text-secondary">Nombre:</span> Zeballos Solíz Álbaro Alejandro
+                <span class="text-secondary">Nombre:</span> Zeballos Solíz Álbaro
+                Alejandro
               </p>
               <p class="text-xs text-secondary mt-3">
                 Una vez realizado el pago, suba su voucher en el formulario o
@@ -572,16 +573,18 @@
     });
   }
 
-
-
   // === FORM SUBMISSION ===
-  const registrationForm = document.getElementById("registration-form") as HTMLFormElement;
+  const registrationForm = document.getElementById(
+    "registration-form",
+  ) as HTMLFormElement;
 
   if (registrationForm) {
     registrationForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const submitBtn = registrationForm.querySelector('button[type="submit"]') as HTMLButtonElement;
+      const submitBtn = registrationForm.querySelector(
+        'button[type="submit"]',
+      ) as HTMLButtonElement;
       if (!submitBtn) return;
 
       // Show loading state
@@ -594,8 +597,12 @@
         const formData = new FormData(registrationForm);
 
         // Add files from dropzone inputs (they might not be in the form natively)
-        const photoInput = document.getElementById("photo-input") as HTMLInputElement;
-        const voucherInput = document.getElementById("voucher-input") as HTMLInputElement;
+        const photoInput = document.getElementById(
+          "photo-input",
+        ) as HTMLInputElement;
+        const voucherInput = document.getElementById(
+          "voucher-input",
+        ) as HTMLInputElement;
 
         if (photoInput?.files?.[0]) {
           formData.set("photo", photoInput.files[0]);
@@ -640,7 +647,9 @@
           submitBtn.classList.remove("opacity-70", "cursor-wait");
         }
       } catch (err) {
-        showFormError("Error de conexión. Verifique su internet e inténtelo de nuevo.");
+        showFormError(
+          "Error de conexión. Verifique su internet e inténtelo de nuevo.",
+        );
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
         submitBtn.classList.remove("opacity-70", "cursor-wait");
@@ -655,7 +664,8 @@
 
     const errorDiv = document.createElement("div");
     errorDiv.id = "form-error-msg";
-    errorDiv.className = "bg-red-500/10 border border-red-500/30 text-red-400 rounded-lg p-4 text-center text-sm mt-4";
+    errorDiv.className =
+      "bg-red-500/10 border border-red-500/30 text-red-400 rounded-lg p-4 text-center text-sm mt-4";
     errorDiv.textContent = message;
 
     const form = document.getElementById("registration-form");
