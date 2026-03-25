@@ -596,7 +596,6 @@
       try {
         const formData = new FormData(registrationForm);
 
-        // Add files from dropzone inputs (they might not be in the form natively)
         const photoInput = document.getElementById(
           "photo-input",
         ) as HTMLInputElement;
@@ -619,7 +618,6 @@
         const result = await response.json();
 
         if (response.ok && result.success) {
-          // Show success message
           const formContainer = registrationForm.closest(".lg\\:col-span-2");
           if (formContainer) {
             formContainer.innerHTML = `
@@ -633,15 +631,35 @@
                 <p class="text-on-surface-variant text-lg">Su registro ha sido recibido correctamente.</p>
                 <div class="bg-primary/10 border border-primary/30 rounded-lg p-6 inline-block">
                   <p class="text-sm text-secondary mb-1">Su código de registro es:</p>
-                  <p class="text-3xl font-bold text-primary tracking-widest">${result.registration_code}</p>
+                  <p class="text-3xl font-bold text-primary tracking-widest">${result.registrationCode || result.registration_code}</p>
+                </div>
+                <p class="text-sm text-secondary">Guarde este código, lo necesitará para recoger su credencial.</p>
+              </div>
+            `;
+          }
+        } else if (response.status === 201) {
+          const registrationCode = result.registrationCode || result.registration_code || result.code || "";
+          const formContainer = registrationForm.closest(".lg\\:col-span-2");
+          if (formContainer) {
+            formContainer.innerHTML = `
+              <div class="text-center py-12 space-y-6">
+                <div class="w-20 h-20 mx-auto bg-green-500/20 rounded-full flex items-center justify-center">
+                  <svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <h3 class="font-headline text-3xl text-primary">¡Registro Exitoso!</h3>
+                <p class="text-on-surface-variant text-lg">Su registro ha sido recibido correctamente.</p>
+                <div class="bg-primary/10 border border-primary/30 rounded-lg p-6 inline-block">
+                  <p class="text-sm text-secondary mb-1">Su código de registro es:</p>
+                  <p class="text-3xl font-bold text-primary tracking-widest">${registrationCode}</p>
                 </div>
                 <p class="text-sm text-secondary">Guarde este código, lo necesitará para recoger su credencial.</p>
               </div>
             `;
           }
         } else {
-          // Show error
-          showFormError(result.error || "Error al procesar el registro.");
+          showFormError(result.error || result.message || "Error al procesar el registro.");
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
           submitBtn.classList.remove("opacity-70", "cursor-wait");
