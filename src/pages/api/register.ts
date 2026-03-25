@@ -11,30 +11,38 @@ export const POST: APIRoute = async ({ request }) => {
 
     const backendFormData = new FormData();
 
-    const fields = [
-      "firstName",
-      "lastName",
-      "badgeName",
-      "documentNumber",
-      "country",
-      "district",
-      "club",
-      "roleTitle",
-      "email",
-      "phone",
-      "participantType",
-      "specialRequirements",
-      "lionNumber",
-      "notes",
-      "paidAmount",
-      "expectedAmount",
-    ];
+    const fieldMapping: Record<string, string> = {
+      first_name: "firstName",
+      last_name: "lastName",
+      role_title: "roleTitle",
+      participant_type: "participantType",
+      lion_number: "lionNumber",
+      special_requirements: "specialRequirements",
+      documentNumber: "documentNumber",
+    };
 
-    for (const field of fields) {
+    for (const [formKey, apiKey] of Object.entries(fieldMapping)) {
+      const value = formData.get(formKey);
+      if (value && typeof value === "string") {
+        backendFormData.append(apiKey, value);
+      }
+    }
+
+    const textFields = ["country", "district", "club", "email", "phone", "notes"];
+    for (const field of textFields) {
       const value = formData.get(field);
       if (value && typeof value === "string") {
         backendFormData.append(field, value);
       }
+    }
+
+    backendFormData.set("paidAmount", "0");
+    backendFormData.set("expectedAmount", "0");
+
+    const firstName = formData.get("first_name") as string | null;
+    const lastName = formData.get("last_name") as string | null;
+    if (firstName && lastName) {
+      backendFormData.set("badgeName", `${firstName} ${lastName}`);
     }
 
     const photo = formData.get("photo") as File | null;
