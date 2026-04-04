@@ -1,5 +1,5 @@
 ---
-
+import InfoModal from "../ui/InfoModal.astro";
 ---
 
 <section
@@ -97,14 +97,51 @@
         >
       </div>
     </div>
-    <a
-      class="inline-block bg-primary text-on-primary px-10 py-4 rounded-md font-bold text-lg hover:bg-tertiary transition-all hover:scale-105 active:scale-95 shadow-xl hero-pulse anim-delay-1100"
-      href="#registro"
+    <div
+      class="flex flex-col md:flex-row items-center justify-center gap-4 hero-fade-in anim-delay-1100"
     >
-      Registrarse Ahora
-    </a>
+      <a
+        class="w-full md:w-auto inline-block bg-primary text-on-primary px-10 py-4 rounded-md font-bold text-lg hover:bg-tertiary transition-all hover:scale-105 active:scale-95 shadow-xl text-center"
+        href="#registro"
+      >
+        Registrarse Ahora
+      </a>
+
+      <button
+        id="btn-leo"
+        class="w-full md:w-auto inline-block bg-slate-600 text-white px-10 py-4 rounded-md font-bold text-lg hover:bg-slate-500 transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer"
+      >
+        LEO – 50% OFF
+      </button>
+
+      <button
+        id="btn-adscritos"
+        class="w-full md:w-auto inline-block bg-[#00429d] text-white px-10 py-4 rounded-md font-bold text-lg hover:bg-[#0056b3] transition-all hover:scale-105 active:scale-95 shadow-xl cursor-pointer"
+      >
+        ADSCRITOS A LA CONVENCIÓN
+      </button>
+    </div>
   </div>
 </section>
+
+<InfoModal
+  id="modal-leo"
+  triggerId="btn-leo"
+  title="LEO – Sección Juvenil"
+  message="BIENVENIDOS A LA CONVENCIÓN Y QUE TENDRÁN UNA REBAJA DE 50 %"
+  buttonText="Quiero registrarme como LEO"
+  buttonHref="#registro"
+/>
+
+<InfoModal
+  id="modal-adscritos"
+  triggerId="btn-adscritos"
+  title="Adscritos a la Convención"
+  message="SON BIENVENIDOS LOS SIMPATIZANTES DEL LEONISMO A TODAS LAS ACTIVIDADES EN CONJUNTO O SEPARADAS, MEDIANTE UNA ALÍCUOTA DE HOSPITALIDAD QUE SE FIJARÁ PARA CADA OCASIÓN: CONSULTAR CON EL COMITÉ ORGANIZADOR DE LA CONVENCIÓN"
+  buttonText="Consultar con el Comité Organizador"
+  buttonHref="https://wa.me/59165433511"
+  isExternal={true}
+/>
 
 <script>
   // Target date: 30 de Abril, 2026

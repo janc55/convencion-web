@@ -1,0 +1,115 @@
+---
+interface Props {
+    id: string;
+    triggerId: string;
+    title: string;
+    message: string;
+    buttonText: string;
+    buttonHref: string;
+    isExternal?: boolean;
+}
+
+const {
+    id,
+    triggerId,
+    title,
+    message,
+    buttonText,
+    buttonHref,
+    isExternal = false,
+} = Astro.props;
+---
+
+<div
+    id={id}
+    class="modal-overlay fixed inset-0 z-[100] flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300 bg-black/60 backdrop-blur-sm"
+>
+    <div
+        id={`${id}-content`}
+        class="modal-content bg-[#00132f] border border-white/10 rounded-2xl max-w-lg w-full p-8 shadow-2xl transform scale-95 transition-all duration-300 relative"
+    >
+        <button
+            class="close-modal absolute top-4 right-4 text-white/50 hover:text-white transition-colors p-2 cursor-pointer"
+            aria-label="Cerrar"
+        >
+            <span class="material-symbols-outlined text-3xl pointer-events-none"
+                >close</span
+            >
+        </button>
+
+        <div class="text-center">
+            <div
+                class="mb-6 inline-flex p-4 rounded-full bg-primary/10 text-primary"
+            >
+                <span class="material-symbols-outlined text-5xl">info</span>
+            </div>
+
+            <h3 class="text-3xl font-headline text-primary mb-4">{title}</h3>
+
+            <p class="text-[#aac7ff]/80 text-lg leading-relaxed mb-8">
+                {message}
+            </p>
+
+            <a
+                href={buttonHref}
+                target={isExternal ? "_blank" : "_self"}
+                rel={isExternal ? "noopener noreferrer" : ""}
+                class="modal-action-btn inline-block w-full bg-primary text-on-primary px-8 py-4 rounded-md font-bold text-lg hover:bg-tertiary transition-all hover:scale-105 active:scale-95 shadow-xl text-center"
+            >
+                {buttonText}
+            </a>
+        </div>
+    </div>
+</div>
+
+<script define:vars={{ id, triggerId, isExternal }}>
+    const modal = document.getElementById(id);
+    const content = document.getElementById(`${id}-content`);
+    const trigger = document.getElementById(triggerId);
+    const closeBtn = modal?.querySelector(".close-modal");
+    const actionBtn = modal?.querySelector(".modal-action-btn");
+
+    const openModal = () => {
+        modal?.classList.add("active");
+        content?.classList.add("active");
+    };
+
+    const closeModal = () => {
+        modal?.classList.remove("active");
+        content?.classList.remove("active");
+    };
+
+    if (modal && content) {
+        if (trigger) {
+            trigger.addEventListener("click", openModal);
+        }
+
+        closeBtn?.addEventListener("click", closeModal);
+
+        if (!isExternal) {
+            actionBtn?.addEventListener("click", closeModal);
+        }
+
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        window.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && modal.classList.contains("active")) {
+                closeModal();
+            }
+        });
+    }
+</script>
+
+<style>
+    .modal-overlay.active {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+    }
+    .modal-content.active {
+        transform: scale(1) !important;
+    }
+</style>
