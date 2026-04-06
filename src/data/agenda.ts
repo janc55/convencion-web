@@ -4,6 +4,7 @@ export type AgendaItem = {
   description: string;
   icon: string;
   location?: string;
+  location_url?: string;
   responsible?: string;
 };
 
@@ -24,6 +25,7 @@ export const agendaData: AgendaDay[] = [
         description: "Entrega de CREDENCIALES en la Sede del Club",
         icon: "luggage",
         location: "Sede del Club",
+        location_url: "https://maps.app.goo.gl/315dQ2vwn6b852et6",
         responsible: "Comité Organizador",
       },
       {
@@ -32,6 +34,7 @@ export const agendaData: AgendaDay[] = [
         description: "Reunión protocolar con autoridades locales.",
         icon: "handshake",
         location: "Gobernación y Alcaldía",
+        location_url: "https://maps.app.goo.gl/UZeVE4SBbbZiHDbf9",
         responsible: "Comité Organizador",
       },
       {
@@ -40,6 +43,7 @@ export const agendaData: AgendaDay[] = [
         description: "Sesión fotográfica oficial de las delegaciones.",
         icon: "photo_camera",
         location: "Monumento de la Virgen del Socavón",
+        location_url: "https://maps.app.goo.gl/Y6CMiQqoVz7WM9vA6",
         responsible: "Comité Organizador",
       },
       {
@@ -48,6 +52,7 @@ export const agendaData: AgendaDay[] = [
         description: "Ceremonia religiosa de agradecimiento.",
         icon: "church",
         location: "Basílica Menor del Socavón",
+        location_url: "https://maps.app.goo.gl/nua4NmBDQ5J7VbYbA",
         responsible: "Comité Organizador",
       },
       {
@@ -56,6 +61,7 @@ export const agendaData: AgendaDay[] = [
         description: "Desfile inaugural de los participantes.",
         icon: "flag",
         location: "Calles céntricas de la ciudad",
+        location_url: "https://maps.app.goo.gl/UZeVE4SBbbZiHDbf9",
         responsible: "Comité Organizador",
       },
       {
@@ -64,6 +70,7 @@ export const agendaData: AgendaDay[] = [
         description: "Almuerzo exclusivo para exgobernadores.",
         icon: "restaurant",
         location: "Las Retamas Restaurante",
+        location_url: "https://maps.app.goo.gl/5nLhEiFEJREdnUay8",
         responsible: "Comité Organizador",
       },
       {
@@ -80,6 +87,7 @@ export const agendaData: AgendaDay[] = [
         description: "Trabajos previos a la convención nacional.",
         icon: "meeting_room",
         location: "Salón principal Torres Morgana",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -88,6 +96,7 @@ export const agendaData: AgendaDay[] = [
         description: "Pausa para café y snacks.",
         icon: "coffee",
         location: "Salón principal Torres Morgana",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -96,6 +105,7 @@ export const agendaData: AgendaDay[] = [
         description: "Trabajos preparatorios por distritos.",
         icon: "groups",
         location: "Salón mezanine Torres Morgana - Salón principal Torres Morgana",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -104,6 +114,7 @@ export const agendaData: AgendaDay[] = [
         description: "Apertura oficial con desfile de banderas.",
         icon: "stars",
         location: "Club Oruro",
+        location_url: "https://maps.app.goo.gl/8K3pzHM3spmNcSqQ8",
         responsible: "Comité Organizador",
       },
       {
@@ -112,6 +123,7 @@ export const agendaData: AgendaDay[] = [
         description: "Noche de confraternización y conocimiento mutuo.",
         icon: "wine_bar",
         location: "Club Oruro",
+        location_url: "https://maps.app.goo.gl/8K3pzHM3spmNcSqQ8",
         responsible: "Comité Organizador",
       },
     ],
@@ -126,6 +138,7 @@ export const agendaData: AgendaDay[] = [
         description: "Primer bloque de trabajo distrital.",
         icon: "group_work",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -134,6 +147,7 @@ export const agendaData: AgendaDay[] = [
         description: "Pausa activa.",
         icon: "coffee",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -142,6 +156,7 @@ export const agendaData: AgendaDay[] = [
         description: "Segundo bloque de trabajo distrital.",
         icon: "group_work",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -150,6 +165,7 @@ export const agendaData: AgendaDay[] = [
         description: "Integración y competencia amistosa.",
         icon: "celebration",
         location: "Club Oruro",
+        location_url: "https://maps.app.goo.gl/8K3pzHM3spmNcSqQ8",
         responsible: "Comité Organizador",
       },
       {
@@ -158,6 +174,7 @@ export const agendaData: AgendaDay[] = [
         description: "Tercer bloque de trabajo distrital.",
         icon: "group_work",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -166,6 +183,7 @@ export const agendaData: AgendaDay[] = [
         description: "Pausa para recargar energías.",
         icon: "coffee",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -174,6 +192,7 @@ export const agendaData: AgendaDay[] = [
         description: "Proceso de elección de nuevas autoridades.",
         icon: "how_to_vote",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -182,6 +201,7 @@ export const agendaData: AgendaDay[] = [
         description: "Regocijo general y celebración cultural.",
         icon: "nightlife",
         location: "Club Oruro",
+        location_url: "https://maps.app.goo.gl/8K3pzHM3spmNcSqQ8",
         responsible: "Comité Organizador",
       },
     ],
@@ -196,6 +216,7 @@ export const agendaData: AgendaDay[] = [
         description: "Conferencia de formación para miembros.",
         icon: "school",
         location: "Sede del Club de Leones Oruro",
+        location_url: "https://maps.app.goo.gl/315dQ2vwn6b852et6",
         responsible: "Comité Organizador",
       },
       {
@@ -204,6 +225,7 @@ export const agendaData: AgendaDay[] = [
         description: "Pausa para café.",
         icon: "coffee",
         location: "Sede del Club de Leones Oruro",
+        location_url: "https://maps.app.goo.gl/315dQ2vwn6b852et6",
         responsible: "Comité Organizador",
       },
       {
@@ -212,6 +234,7 @@ export const agendaData: AgendaDay[] = [
         description: "Discurso principal del evento.",
         icon: "record_voice_over",
         location: "Sede del Club de Leones Oruro",
+        location_url: "https://maps.app.goo.gl/315dQ2vwn6b852et6",
         responsible: "Comité Organizador",
       },
       {
@@ -236,6 +259,7 @@ export const agendaData: AgendaDay[] = [
         description: "Sesión conjunta de la Convención Nacional y Bi-Distrital.",
         icon: "meeting_room",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -244,6 +268,7 @@ export const agendaData: AgendaDay[] = [
         description: "Pausa para refrigerio.",
         icon: "coffee",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -252,6 +277,7 @@ export const agendaData: AgendaDay[] = [
         description: "Anuncio de autoridades electas y cierre oficial.",
         icon: "celebration",
         location: "Salones Torres Morgana-Terán",
+        location_url: "https://maps.app.goo.gl/8NcpYZxzsEWc6hZH9",
         responsible: "Comité Organizador",
       },
       {
@@ -260,6 +286,7 @@ export const agendaData: AgendaDay[] = [
         description: "Homenaje a gobernadores y vicegobernadores electos.",
         icon: "dinner_dining",
         location: "Club Oruro",
+        location_url: "https://maps.app.goo.gl/8K3pzHM3spmNcSqQ8",
         responsible: "Comité Organizador",
       },
     ],
