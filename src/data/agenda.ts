@@ -16,7 +16,7 @@ export type AgendaDay = {
 export const agendaData: AgendaDay[] = [
   {
     day: "Día 1",
-    date: "30 de abril",
+    date: "jueves, 30 de abril",
     items: [
       {
         time: "Todo el día",
@@ -31,7 +31,7 @@ export const agendaData: AgendaDay[] = [
         title: "Visita protocolar a autoridades de la Ciudad",
         description: "Reunión protocolar con autoridades locales.",
         icon: "handshake",
-        location: "Por definir",
+        location: "Gobernación y Alcaldía",
         responsible: "Comité Organizador",
       },
       {
@@ -60,10 +60,10 @@ export const agendaData: AgendaDay[] = [
       },
       {
         time: "13:00 - 14:30",
-        title: "Almuerzo del Círculo de Exgobernadores",
+        title: "Almuerzo del Círculo de Exgobernadores (Autofinanciado)",
         description: "Almuerzo exclusivo para exgobernadores.",
         icon: "restaurant",
-        location: "Por definir",
+        location: "Las Retamas Restaurante",
         responsible: "Comité Organizador",
       },
       {
@@ -71,7 +71,7 @@ export const agendaData: AgendaDay[] = [
         title: "Almuerzo Libre para los Convencionales",
         description: "Tiempo libre para almorzar por cuenta propia.",
         icon: "lunch_dining",
-        location: "Por definir",
+        location: "Distintos lugares de la ciudad",
         responsible: "Comité Organizador",
       },
       {
@@ -79,7 +79,7 @@ export const agendaData: AgendaDay[] = [
         title: "Sesión Preparatoria de la LXXV Convención Nacional",
         description: "Trabajos previos a la convención nacional.",
         icon: "meeting_room",
-        location: "Por definir",
+        location: "Salón principal Torres Morgana",
         responsible: "Comité Organizador",
       },
       {
@@ -87,7 +87,7 @@ export const agendaData: AgendaDay[] = [
         title: "Refrigerio",
         description: "Pausa para café y snacks.",
         icon: "coffee",
-        location: "Por definir",
+        location: "Salón principal Torres Morgana",
         responsible: "Comité Organizador",
       },
       {
@@ -95,7 +95,7 @@ export const agendaData: AgendaDay[] = [
         title: "Sesión Preparatoria de la LIII Convención por Distritos",
         description: "Trabajos preparatorios por distritos.",
         icon: "groups",
-        location: "Por definir",
+        location: "Salón mezanine Torres Morgana - Salón principal Torres Morgana",
         responsible: "Comité Organizador",
       },
       {
@@ -103,7 +103,7 @@ export const agendaData: AgendaDay[] = [
         title: "Solemne Sesión Inaugural de la LXXV Convención Nacional y LIII Convención Bidistrital",
         description: "Apertura oficial con desfile de banderas.",
         icon: "stars",
-        location: "Por definir",
+        location: "Club Oruro",
         responsible: "Comité Organizador",
       },
       {
@@ -111,21 +111,21 @@ export const agendaData: AgendaDay[] = [
         title: "Cóctel de Bienvenida y mutuo conocimiento de los convencionales",
         description: "Noche de confraternización y conocimiento mutuo.",
         icon: "wine_bar",
-        location: "Por definir",
+        location: "Club Oruro",
         responsible: "Comité Organizador",
       },
     ],
   },
   {
     day: "Día 2",
-    date: "1 de mayo",
+    date: "viernes, 1 de mayo",
     items: [
       {
         time: "09:00 - 10:30",
         title: "Reuniones de Trabajo por Distritos",
         description: "Primer bloque de trabajo distrital.",
         icon: "group_work",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
@@ -133,7 +133,7 @@ export const agendaData: AgendaDay[] = [
         title: "Refrigerio",
         description: "Pausa activa.",
         icon: "coffee",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
@@ -141,7 +141,7 @@ export const agendaData: AgendaDay[] = [
         title: "Reuniones de Trabajo por Distritos",
         description: "Segundo bloque de trabajo distrital.",
         icon: "group_work",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
@@ -149,7 +149,7 @@ export const agendaData: AgendaDay[] = [
         title: "Almuerzo de Camaradería y Concurso de Tuercerrabía",
         description: "Integración y competencia amistosa.",
         icon: "celebration",
-        location: "Por definir",
+        location: "Club Oruro",
         responsible: "Comité Organizador",
       },
       {
@@ -157,7 +157,7 @@ export const agendaData: AgendaDay[] = [
         title: "Reuniones de Trabajo por Distritos",
         description: "Tercer bloque de trabajo distrital.",
         icon: "group_work",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
@@ -165,7 +165,7 @@ export const agendaData: AgendaDay[] = [
         title: "Refrigerio",
         description: "Pausa para recargar energías.",
         icon: "coffee",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
@@ -173,7 +173,7 @@ export const agendaData: AgendaDay[] = [
         title: "Reuniones de trabajo por distritos y Elección de Autoridades Leonísticas por Distrito",
         description: "Proceso de elección de nuevas autoridades.",
         icon: "how_to_vote",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
@@ -181,21 +181,21 @@ export const agendaData: AgendaDay[] = [
         title: "Noche de las Delegaciones y regocijo general de los convencionales",
         description: "Regocijo general y celebración cultural.",
         icon: "nightlife",
-        location: "Por definir",
+        location: "Club Oruro",
         responsible: "Comité Organizador",
       },
     ],
   },
   {
     day: "Día 3",
-    date: "2 de mayo",
+    date: "sábado, 2 de mayo",
     items: [
       {
         time: "09:45 - 10:45",
-        title: "Capacitación Leonística",
+        title: "Simposio de la Mujer (propia adhesión) (mujer orureña)",
         description: "Conferencia de formación para miembros.",
         icon: "school",
-        location: "Por definir",
+        location: "Sede del Club de Leones Oruro",
         responsible: "Comité Organizador",
       },
       {
@@ -203,15 +203,15 @@ export const agendaData: AgendaDay[] = [
         title: "Refrigerio",
         description: "Pausa para café.",
         icon: "coffee",
-        location: "Por definir",
+        location: "Sede del Club de Leones Oruro",
         responsible: "Comité Organizador",
       },
       {
         time: "11:00 - 12:00",
-        title: "Mensaje del Orador Oficial",
+        title: "Simposio de la Mujer (propia adhesión) (mujer orureña)",
         description: "Discurso principal del evento.",
         icon: "record_voice_over",
-        location: "Por definir",
+        location: "Sede del Club de Leones Oruro",
         responsible: "Comité Organizador",
       },
       {
@@ -227,7 +227,7 @@ export const agendaData: AgendaDay[] = [
         title: "Almuerzo Libre para los Convencionales",
         description: "Tiempo libre para almorzar.",
         icon: "lunch_dining",
-        location: "Por definir",
+        location: "Restaurantes de la Ciudad",
         responsible: "Comité Organizador",
       },
       {
@@ -235,7 +235,7 @@ export const agendaData: AgendaDay[] = [
         title: "Sesión de Trabajo",
         description: "Sesión conjunta de la Convención Nacional y Bi-Distrital.",
         icon: "meeting_room",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
@@ -243,15 +243,15 @@ export const agendaData: AgendaDay[] = [
         title: "Refrigerio",
         description: "Pausa para refrigerio.",
         icon: "coffee",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
         time: "16:30 - 18:00",
-        title: "Proclamación de Autoridades y Clausura",
+        title: "Mensaje del Orador Oficial: Proclamación de Autoridades y Clausura",
         description: "Anuncio de autoridades electas y cierre oficial.",
         icon: "celebration",
-        location: "Por definir",
+        location: "Salones Torres Morgana-Terán",
         responsible: "Comité Organizador",
       },
       {
@@ -259,14 +259,14 @@ export const agendaData: AgendaDay[] = [
         title: "Cena de Gala",
         description: "Homenaje a gobernadores y vicegobernadores electos.",
         icon: "dinner_dining",
-        location: "Por definir",
+        location: "Club Oruro",
         responsible: "Comité Organizador",
       },
     ],
   },
   {
     day: "Día 4",
-    date: "3 de mayo",
+    date: "domingo, 3 de mayo",
     items: [
       {
         time: "10:00 - 16:00",
