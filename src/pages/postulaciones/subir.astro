@@ -1,0 +1,346 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout title="Subir Postulación | LXXV Convención Nacional">
+    <main
+        class="min-h-screen bg-surface relative overflow-hidden flex items-center justify-center py-12 px-6"
+    >
+        <!-- Decorative background -->
+        <div class="absolute inset-0 hex-pattern opacity-5"></div>
+        <div
+            class="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-secondary/10 to-transparent"
+        >
+        </div>
+
+        <div
+            class="max-w-2xl w-full bg-surface-container-high p-8 md:p-12 rounded-2xl shadow-2xl border border-primary/20 relative z-10 animate-on-scroll scale-up"
+        >
+            <div class="mb-8 text-center">
+                <a
+                    href="/postulaciones"
+                    class="inline-flex items-center gap-2 text-primary hover:text-tertiary transition-colors mb-6 group"
+                >
+                    <svg
+                        class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Ver postulaciones
+                </a>
+                <h1
+                    class="font-headline text-3xl text-primary mb-2 text-center"
+                >
+                    Subir Postulación
+                </h1>
+                <p class="text-secondary text-sm">
+                    Complete la información para registrar su postulación
+                    oficial.
+                </p>
+            </div>
+
+            <form id="upload-form" class="space-y-6">
+                <div class="space-y-2">
+                    <label
+                        class="text-xs uppercase tracking-widest text-primary font-bold"
+                        >Nombre Completo</label
+                    >
+                    <input
+                        class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                        type="text"
+                        name="nombre"
+                        required
+                        placeholder="Ej. L. Juan Pérez"
+                    />
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label
+                            class="text-xs uppercase tracking-widest text-primary font-bold"
+                            >Cargo al que postula</label
+                        >
+                        <input
+                            class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                            type="text"
+                            name="cargo"
+                            required
+                            placeholder="Ej. Vice Gobernador"
+                        />
+                    </div>
+                    <div class="space-y-2">
+                        <label
+                            class="text-xs uppercase tracking-widest text-primary font-bold"
+                            >Club de Leones</label
+                        >
+                        <input
+                            class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+                            type="text"
+                            name="club"
+                            required
+                            placeholder="Nombre de su Club"
+                        />
+                    </div>
+                </div>
+
+                <div class="space-y-2">
+                    <label
+                        class="text-xs uppercase tracking-widest text-primary font-bold"
+                        >Carta de Postulación (PDF)</label
+                    >
+                    <div
+                        class="border-2 border-dashed border-outline-variant rounded-lg p-8 text-center hover:border-primary transition-colors cursor-pointer group bg-surface/30"
+                        id="pdf-dropzone"
+                    >
+                        <input
+                            class="hidden"
+                            id="pdf-input"
+                            name="pdf"
+                            type="file"
+                            accept=".pdf"
+                            required
+                        />
+                        <div id="pdf-placeholder" class="space-y-3">
+                            <svg
+                                class="w-12 h-12 mx-auto text-secondary group-hover:text-primary transition-colors"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                                ></path>
+                            </svg>
+                            <div class="text-sm">
+                                <span class="text-primary font-bold"
+                                    >Click para subir</span
+                                > o arrastre el archivo
+                            </div>
+                            <p
+                                class="text-[10px] text-secondary/70 uppercase tracking-widest font-bold"
+                            >
+                                PDF (Máx. 1MB)
+                            </p>
+                        </div>
+                        <div id="pdf-selected" class="hidden space-y-2">
+                            <div
+                                class="flex items-center justify-center gap-2 text-green-500 font-bold"
+                            >
+                                <svg
+                                    class="w-6 h-6"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Archivo seleccionado
+                            </div>
+                            <p
+                                id="filename-display"
+                                class="text-sm text-secondary"
+                            >
+                            </p>
+                            <button
+                                type="button"
+                                id="remove-pdf"
+                                class="text-[10px] uppercase tracking-widest text-red-400 hover:text-red-500 font-bold"
+                                >Cambiar archivo</button
+                            >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-6">
+                    <button
+                        type="submit"
+                        id="submit-btn"
+                        class="w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-xl hover:bg-tertiary transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-wait"
+                    >
+                        Registrar Postulación
+                    </button>
+                </div>
+            </form>
+
+            <div id="success-msg" class="hidden text-center py-12 space-y-6">
+                <div
+                    class="w-20 h-20 mx-auto bg-green-500/20 rounded-full flex items-center justify-center"
+                >
+                    <svg
+                        class="w-10 h-10 text-green-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="font-headline text-3xl text-primary">
+                    ¡Registro Exitoso!
+                </h3>
+                <p class="text-on-surface-variant text-lg">
+                    La postulación ha sido enviada y pronto será visible en la
+                    lista oficial.
+                </p>
+                <div
+                    class="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+                >
+                    <a
+                        href="/postulaciones"
+                        class="px-8 py-3 bg-primary text-on-primary rounded-lg font-bold hover:bg-tertiary transition-all shadow-lg"
+                        >Ver Postulaciones</a
+                    >
+                    <button
+                        type="button"
+                        onclick="location.reload()"
+                        class="px-8 py-3 bg-secondary/10 text-secondary border border-secondary/30 rounded-lg font-bold hover:bg-secondary hover:text-white transition-all"
+                        >Subir otra</button
+                    >
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<script>
+    const form = document.getElementById("upload-form") as HTMLFormElement;
+    const dropzone = document.getElementById("pdf-dropzone");
+    const input = document.getElementById("pdf-input") as HTMLInputElement;
+    const placeholder = document.getElementById("pdf-placeholder");
+    const selected = document.getElementById("pdf-selected");
+    const filenameDisplay = document.getElementById("filename-display");
+    const removeBtn = document.getElementById("remove-pdf");
+    const submitBtn = document.getElementById(
+        "submit-btn",
+    ) as HTMLButtonElement;
+    const successMsg = document.getElementById("success-msg");
+
+    if (dropzone && input) {
+        dropzone.addEventListener("click", () => input.click());
+
+        input.addEventListener("change", () => {
+            if (input.files?.length) handleFile(input.files[0]);
+        });
+
+        dropzone.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            dropzone.classList.add("border-primary", "bg-primary/5");
+        });
+
+        dropzone.addEventListener("dragleave", () => {
+            dropzone.classList.remove("border-primary", "bg-primary/5");
+        });
+
+        dropzone.addEventListener("drop", (e) => {
+            e.preventDefault();
+            dropzone.classList.remove("border-primary", "bg-primary/5");
+            if (e.dataTransfer?.files.length) {
+                input.files = e.dataTransfer.files;
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+    }
+
+    function handleFile(file: File) {
+        if (!file.type.includes("pdf")) {
+            alert("Solo se permiten archivos PDF");
+            input.value = "";
+            return;
+        }
+        if (file.size > 1024 * 1024) {
+            alert("El archivo no debe exceder 1MB");
+            input.value = "";
+            return;
+        }
+
+        if (placeholder && selected && filenameDisplay) {
+            placeholder.classList.add("hidden");
+            selected.classList.remove("hidden");
+            filenameDisplay.textContent = file.name;
+        }
+    }
+
+    if (removeBtn) {
+        removeBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            input.value = "";
+            if (placeholder && selected) {
+                placeholder.classList.remove("hidden");
+                selected.classList.add("hidden");
+            }
+        });
+    }
+
+    if (form) {
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Enviando...";
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch("/api/postulaciones", {
+                    method: "POST",
+                    body: formData,
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    form.classList.add("hidden");
+                    successMsg?.classList.remove("hidden");
+                } else {
+                    alert(result.error || "Error al subir la postulación");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            } catch (error) {
+                alert("Error de conexión");
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+    }
+</script>
+
+<style>
+    .hex-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill-rule='evenodd' stroke='%23d1d5db' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+    }
+
+    @keyframes scale-up {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .scale-up {
+        animation: scale-up 0.4s ease-out forwards;
+    }
+</style>
