@@ -315,7 +315,7 @@
             </p>
             <div class="flex justify-center mb-4">
               <img
-                src="/images/qr_code_2.jpg"
+                src="/images/qr_code_3.jpeg"
                 alt="Código QR para pago"
                 id="qr-pago-img"
                 class="w-64 h-64 object-contain rounded-lg bg-white p-2 shadow-lg cursor-pointer hover:opacity-80 transition-opacity"
@@ -638,7 +638,11 @@
             `;
           }
         } else if (response.status === 201) {
-          const registrationCode = result.registrationCode || result.registration_code || result.code || "";
+          const registrationCode =
+            result.registrationCode ||
+            result.registration_code ||
+            result.code ||
+            "";
           const formContainer = registrationForm.closest(".lg\\:col-span-2");
           if (formContainer) {
             formContainer.innerHTML = `
@@ -659,7 +663,9 @@
             `;
           }
         } else {
-          showFormError(result.error || result.message || "Error al procesar el registro.");
+          showFormError(
+            result.error || result.message || "Error al procesar el registro.",
+          );
           submitBtn.disabled = false;
           submitBtn.textContent = originalText;
           submitBtn.classList.remove("opacity-70", "cursor-wait");
