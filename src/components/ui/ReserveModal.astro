@@ -1,0 +1,359 @@
+---
+interface Souvenir {
+  id: string;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  precioPreventa: number;
+  stock: number;
+  imagen: string;
+}
+
+interface Props {
+  souvenirs: Souvenir[];
+}
+
+const { souvenirs } = Astro.props;
+---
+
+<div
+  id="reserve-modal"
+  class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4 overflow-y-auto"
+  role="dialog"
+  aria-modal="true"
+>
+  <div class="bg-surface-container-high rounded-2xl max-w-2xl w-full p-6 md:p-8 my-8 relative">
+    <button
+      id="close-modal"
+      class="absolute top-4 right-4 text-secondary hover:text-primary transition-colors"
+      aria-label="Cerrar"
+    >
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <h2 class="font-headline text-3xl text-primary mb-2">Resumen de Reserva</h2>
+    <p class="text-secondary text-sm mb-6">
+      Complete sus datos para confirmar la reserva. El pago se realiza en la convención.
+    </p>
+
+    <form id="reserve-form" class="space-y-4">
+      <div id="cart-items" class="space-y-3 max-h-48 overflow-y-auto mb-4">
+        <p class="text-secondary text-sm">No hay productos seleccionados.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="space-y-2">
+          <label class="text-xs uppercase tracking-widest text-primary font-bold">Nombre Completo</label>
+          <input
+            type="text"
+            name="fullName"
+            required
+            class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+            placeholder="Juan Pérez"
+          />
+        </div>
+        <div class="space-y-2">
+          <label class="text-xs uppercase tracking-widest text-primary font-bold">Teléfono / WhatsApp</label>
+          <input
+            type="tel"
+            name="phone"
+            required
+            class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+            placeholder="+591 70000000"
+          />
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <label class="text-xs uppercase tracking-widest text-primary font-bold">Club de Leones</label>
+        <input
+          type="text"
+          name="club"
+          class="w-full bg-transparent border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface py-2 outline-none transition-all"
+          placeholder="Club de Leones..."
+        />
+      </div>
+
+      <div class="bg-primary/10 border border-primary/30 rounded-lg p-4 mt-4">
+        <label class="flex items-center gap-3 cursor-pointer">
+          <input
+            type="checkbox"
+            name="isPreventa"
+            id="is-preventa-check"
+            class="w-5 h-5 text-primary bg-transparent border-2 border-primary/40 rounded focus:ring-primary"
+          />
+          <div>
+            <span class="text-primary font-bold">Reservar en Preventa</span>
+            <p class="text-xs text-secondary">15% de descuento hasta el 26 de abril</p>
+          </div>
+        </label>
+      </div>
+
+      <div class="border-t border-outline-variant pt-4 mt-4">
+        <div class="flex justify-between items-center text-lg">
+          <span class="text-secondary">Total:</span>
+          <span id="cart-total" class="text-2xl font-bold text-primary">Bs 0</span>
+        </div>
+        <p id="discount-badge" class="text-right text-green-400 text-sm hidden mt-1">
+          Descuento preventa aplicado
+        </p>
+      </div>
+
+      <button
+        type="submit"
+        class="w-full bg-primary text-on-primary font-bold py-4 rounded-md shadow-xl hover:bg-tertiary transition-all active:scale-[0.98] mt-4"
+      >
+        Confirmar Reserva
+      </button>
+    </form>
+  </div>
+</div>
+
+<script define:vars={{ souvenirs }}>
+  const modal = document.getElementById("reserve-modal");
+  const closeBtn = document.getElementById("close-modal");
+  const form = document.querySelector("#reserve-form");
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+  const isPreventaCheck = document.querySelector("#is-preventa-check");
+  const discountBadge = document.getElementById("discount-badge");
+
+  let cartData = {};
+
+  window.openReserveModal = function (selectedCart, preventaActiva) {
+    cartData = selectedCart;
+    renderCart(preventaActiva);
+    if (preventaActiva && isPreventaCheck) {
+      isPreventaCheck.checked = true;
+      discountBadge.classList.remove("hidden");
+    } else if (isPreventaCheck) {
+      isPreventaCheck.checked = false;
+      discountBadge.classList.add("hidden");
+    }
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    document.body.style.overflow = "hidden";
+  };
+
+  function renderCart(preventaActiva) {
+    const items = Object.entries(cartData).filter(([_, data]) => data && data.qty > 0);
+    if (items.length === 0) {
+      cartItems.innerHTML = '<p class="text-secondary text-sm">No hay productos seleccionados.</p>';
+      cartTotal.textContent = "Bs 0";
+      return;
+    }
+
+    let html = "";
+    let total = 0;
+
+    items.forEach(([id, data]) => {
+      const product = souvenirs.find((s) => s.id === id);
+      if (!product) return;
+      const unitPrice = data.price;
+      const qty = data.qty;
+      const subtotal = unitPrice * qty;
+      total += subtotal;
+      html += `
+        <div class="flex justify-between items-center bg-surface/50 rounded-lg p-3">
+          <div>
+            <span class="text-on-surface font-medium">${product.nombre}</span>
+            <span class="text-secondary text-sm ml-2">x${qty}</span>
+          </div>
+          <span class="text-primary font-medium">Bs ${subtotal.toFixed(2)}</span>
+        </div>
+      `;
+    });
+
+    cartItems.innerHTML = html;
+    cartTotal.textContent = `Bs ${total.toFixed(2)}`;
+  }
+
+  if (closeBtn && modal) {
+    closeBtn.addEventListener("click", () => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+    });
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        document.body.style.overflow = "";
+      }
+    });
+  }
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Procesando...";
+      }
+
+      try {
+        const formData = new FormData(form);
+        const items = Object.entries(cartData)
+          .filter(([_, data]) => data && data.qty > 0)
+          .map(([id, data]) => {
+            return {
+              id,
+              quantity: data.qty,
+              unitPrice: data.price,
+            };
+          });
+
+        formData.set("items", JSON.stringify(items));
+        formData.set("isPreventa", isPreventaCheck?.checked || false);
+
+        const response = await fetch("/api/store-reservation", {
+          method: "POST",
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showSuccessVoucher(result.reservation);
+        } else {
+          alert(result.error || "Error al procesar la reserva");
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Confirmar Reserva";
+          }
+        }
+      } catch (err) {
+        alert("Error de conexión");
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Confirmar Reserva";
+        }
+      }
+    });
+  }
+
+  function showSuccessVoucher(reservation) {
+    const isPreventa = reservation.isPreventa;
+    const itemsHtml = reservation.items
+      .map(
+        (item) => {
+          const product = souvenirs.find((s) => s.id === item.id);
+          return `
+            <tr>
+              <td class="py-2 px-2">${product.nombre}</td>
+              <td class="py-2 px-2 text-center">${item.quantity}</td>
+              <td class="py-2 px-2 text-right">Bs ${item.unitPrice.toFixed(2)}</td>
+              <td class="py-2 px-2 text-right">Bs ${(item.quantity * item.unitPrice).toFixed(2)}</td>
+            </tr>
+          `;
+        }
+      )
+      .join("");
+
+    const modalContent = modal.querySelector(".bg-surface-container-high");
+    if (modalContent) {
+      modalContent.innerHTML = `
+        <button
+          id="close-voucher"
+          class="absolute top-4 right-4 text-secondary hover:text-primary transition-colors"
+          aria-label="Cerrar"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 mx-auto bg-green-500/20 rounded-full flex items-center justify-center mb-4">
+            <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h2 class="font-headline text-2xl text-primary">¡Reserva Exitosa!</h2>
+          <p class="text-secondary text-sm mt-1">Guarde este comprobante</p>
+        </div>
+
+        <div class="bg-surface/50 rounded-lg p-4 mb-4">
+          <div class="flex justify-between mb-2">
+            <span class="text-secondary">Código:</span>
+            <span class="text-primary font-bold">${reservation.reservationCode}</span>
+          </div>
+          <div class="flex justify-between mb-2">
+            <span class="text-secondary">Nombre:</span>
+            <span class="text-on-surface">${reservation.fullName}</span>
+          </div>
+          <div class="flex justify-between mb-2">
+            <span class="text-secondary">Teléfono:</span>
+            <span class="text-on-surface">${reservation.phone}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-secondary">Tipo:</span>
+            <span class="${isPreventa ? 'text-green-400' : 'text-on-surface'} font-medium">
+              ${isPreventa ? 'PREVENTA (15% dsc.)' : 'Regular'}
+            </span>
+          </div>
+        </div>
+
+        <table class="w-full text-sm mb-4">
+          <thead>
+            <tr class="text-secondary border-b border-outline-variant">
+              <th class="py-2 px-2 text-left">Producto</th>
+              <th class="py-2 px-2 text-center">Cant</th>
+              <th class="py-2 px-2 text-right">P.U.</th>
+              <th class="py-2 px-2 text-right">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${itemsHtml}
+          </tbody>
+          <tfoot>
+            <tr class="border-t border-outline-variant">
+              <td colspan="3" class="py-2 px-2 text-right font-bold">Total:</td>
+              <td class="py-2 px-2 text-right text-primary font-bold text-lg">Bs ${reservation.total.toFixed(2)}</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <div class="bg-primary/10 border border-primary/30 rounded-lg p-3 mb-4">
+          <p class="text-sm text-on-surface text-center">
+            <strong>Pago y entrega:</strong> En la Convención Lions Bolivia 2026
+          </p>
+        </div>
+
+        <div class="flex gap-3">
+          <button
+            id="print-voucher"
+            class="flex-1 bg-primary text-on-primary font-bold py-3 rounded-md hover:bg-tertiary transition-all"
+          >
+            Imprimir
+          </button>
+          <button
+            id="new-reserve"
+            class="flex-1 bg-surface-variant text-on-surface font-bold py-3 rounded-md hover:bg-surface-container-high transition-all"
+          >
+            Nueva Reserva
+          </button>
+        </div>
+      `;
+
+      document.getElementById("close-voucher")?.addEventListener("click", () => {
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        document.body.style.overflow = "";
+      });
+
+      document.getElementById("print-voucher")?.addEventListener("click", () => {
+        window.print();
+      });
+
+      document.getElementById("new-reserve")?.addEventListener("click", () => {
+        window.location.reload();
+      });
+    }
+  }
+</script>

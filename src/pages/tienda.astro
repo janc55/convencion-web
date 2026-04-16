@@ -1,0 +1,295 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/layout/Navbar.astro";
+import Footer from "../components/layout/Footer.astro";
+import { souvenirs, preventaConfig } from "../data/souvenirs";
+import ReserveModal from "../components/ui/ReserveModal.astro";
+
+export const prerender = false;
+
+const fechaPreventas = new Date(preventaConfig.fechaFin);
+const hoy = new Date();
+const preventivaActiva = hoy <= fechaPreventas;
+---
+
+<Layout title="Tienda de Souvenirs - Convención Lions Bolivia 2026">
+  <Navbar />
+  <main class="pt-24 min-h-screen">
+    <section class="py-12 bg-[#0c3569] relative">
+      <div class="absolute inset-0 hex-pattern opacity-10"></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-8">
+          <h1 class="font-headline text-4xl md:text-5xl text-primary mb-4">
+            Tienda de Souvenirs
+          </h1>
+          <p class="text-xl text-secondary max-w-2xl mx-auto">
+            Reserve sus souvenirs oficiales de la Convención Lions Bolivia 2026.
+            El pago y entrega se realizará en el evento.
+          </p>
+        </div>
+
+        {
+          preventivaActiva && (
+            <div class="inline-flex items-center gap-3 bg-yellow-500/20 border border-yellow-500/40 rounded-full px-6 py-3">
+              <svg
+                class="w-5 h-5 text-yellow-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
+                />
+              </svg>
+              <span class="text-yellow-400 font-medium">
+                Preventa: {preventaConfig.descuento}% de descuento hasta el{" "}
+                {preventaConfig.fechaFin}
+              </span>
+            </div>
+          )
+        }
+      </div>
+    </section>
+
+    <section class="py-12 bg-surface">
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
+          {
+            souvenirs.map((producto) => (
+              <div class="bg-surface-container-high rounded-xl overflow-hidden border border-outline-variant hover:border-primary/40 transition-all group">
+                <div class="aspect-square relative bg-surface/50 overflow-hidden">
+                  <img
+                    src={producto.imagen}
+                    alt={producto.nombre}
+                    class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div
+                    class="absolute top-2 right-2 bg-primary/90 text-secondary-fixed text-xs px-2 py-1 rounded-full font-bold stock-badge"
+                    data-id={producto.id}
+                  >
+                    {producto.stock} disponibles
+                  </div>
+                </div>
+                <div class="p-4">
+                  <h3 class="font-headline text-lg text-on-surface mb-1">
+                    {producto.nombre}
+                  </h3>
+                  <p class="text-sm text-secondary mb-3 line-clamp-2">
+                    {producto.descripcion}
+                  </p>
+                  <div class="flex items-baseline gap-2 mb-4">
+                    {preventivaActiva ? (
+                      <>
+                        <span class="text-xl font-bold text-primary">
+                          Bs {producto.precioPreventa.toFixed(2)}
+                        </span>
+                        <span class="text-sm text-secondary line-through">
+                          Bs {producto.precio.toFixed(2)}
+                        </span>
+                      </>
+                    ) : (
+                      <span class="text-xl font-bold text-primary">
+                        Bs {producto.precio.toFixed(2)}
+                      </span>
+                    )}
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <div class="flex-1 flex items-center bg-surface/50 rounded-lg">
+                      <button
+                        class="qty-btn w-10 h-10 text-primary hover:bg-primary/10 transition-colors"
+                        data-id={producto.id}
+                        data-action="decrease"
+                      >
+                        -
+                      </button>
+                      <input
+                        type="number"
+                        min="0"
+                        max={producto.stock}
+                        value="0"
+                        class="qty-input w-12 h-10 text-center bg-transparent text-on-surface outline-none"
+                        data-id={producto.id}
+                        readonly
+                      />
+                      <button
+                        class="qty-btn w-10 h-10 text-primary hover:bg-primary/10 transition-colors"
+                        data-id={producto.id}
+                        data-action="increase"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <button
+                      class="add-btn bg-primary text-on-primary px-4 py-2 rounded-lg font-medium hover:bg-tertiary transition-colors"
+                      data-id={producto.id}
+                    >
+                      Agregar
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="py-8 bg-surface-container-low border-t border-outline-variant"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="bg-primary/10 border border-primary/30 rounded-lg px-4 py-3"
+            >
+              <span class="text-primary font-bold text-lg" id="total-items"
+                >0</span
+              >
+              <span class="text-secondary"> artículos</span>
+            </div>
+            <div class="bg-surface-variant rounded-lg px-4 py-3">
+              <span class="text-on-surface font-bold text-lg">Total: </span>
+              <span
+                class="text-primary font-bold text-xl"
+                id="cart-total-display">Bs 0</span
+              >
+            </div>
+          </div>
+          <button
+            id="open-reserve-btn"
+            class="bg-primary text-on-primary px-8 py-3 rounded-lg font-bold text-lg shadow-xl hover:bg-tertiary transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Reservar Ahora
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <ReserveModal souvenirs={souvenirs} />
+</Layout>
+
+<script define:vars={{ souvenirs, preventivaActiva }}>
+  const cart = {};
+  const openReserveBtn = document.getElementById("open-reserve-btn");
+  const totalItemsEl = document.getElementById("total-items");
+  const cartTotalDisplay = document.getElementById("cart-total-display");
+  let currentStock = {};
+
+  async function loadStock() {
+    try {
+      const response = await fetch("/api/souvenir-stock");
+      if (response.ok) {
+        currentStock = await response.json();
+        updateStockDisplay();
+      }
+    } catch (e) {
+      console.log("Using initial stock");
+      souvenirs.forEach((s) => {
+        currentStock[s.id] = s.stock;
+      });
+    }
+  }
+
+  function updateStockDisplay() {
+    document.querySelectorAll(".stock-badge").forEach((badge) => {
+      const id = badge.dataset.id;
+      const stock = currentStock[id] || 0;
+      if (stock > 0) {
+        badge.textContent = stock + " disponibles";
+        badge.className =
+          "absolute top-2 right-2 bg-primary/90 text-primary-fixed text-xs px-2 py-1 rounded-full font-bold stock-badge";
+        badge.dataset.id = id;
+      } else {
+        badge.textContent = "Agotado";
+        badge.className =
+          "absolute top-2 right-2 bg-red-500/90 text-white text-xs px-2 py-1 rounded-full font-bold stock-badge";
+        badge.dataset.id = id;
+      }
+    });
+  }
+
+  function updateCart() {
+    let totalItems = 0;
+    let total = 0;
+    Object.entries(cart).forEach(([id, qty]) => {
+      if (qty > 0) {
+        const product = souvenirs.find((s) => s.id === id);
+        if (product) {
+          const price = preventivaActiva
+            ? product.precioPreventa
+            : product.precio;
+          totalItems += qty;
+          total += price * qty;
+        }
+      }
+    });
+    totalItemsEl.textContent = totalItems;
+    cartTotalDisplay.textContent = `Bs ${total.toFixed(2)}`;
+    openReserveBtn.disabled = totalItems === 0;
+  }
+
+  document.querySelectorAll(".qty-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+      const action = btn.dataset.action;
+      const input = document.querySelector(`.qty-input[data-id="${id}"]`);
+      let qty = parseInt(input.value) || 0;
+      const maxStock = currentStock[id] || 0;
+
+      if (action === "increase" && qty < maxStock) {
+        qty++;
+      } else if (action === "decrease" && qty > 0) {
+        qty--;
+      }
+
+      input.value = qty;
+      cart[id] = qty;
+      updateCart();
+    });
+  });
+
+  document.querySelectorAll(".add-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+      const input = document.querySelector(`.qty-input[data-id="${id}"]`);
+      const currentQty = parseInt(input.value) || 0;
+      const maxStock = currentStock[id] || 0;
+      if (currentQty < maxStock) {
+        const newQty = currentQty + 1;
+        input.value = newQty;
+        cart[id] = newQty;
+        updateCart();
+      }
+    });
+  });
+
+  if (openReserveBtn) {
+    openReserveBtn.addEventListener("click", () => {
+      const selectedCart = {};
+      Object.entries(cart).forEach(([id, qty]) => {
+        if (qty > 0) {
+          const product = souvenirs.find((s) => s.id === id);
+          if (product) {
+            selectedCart[id] = {
+              qty: qty,
+              price: preventivaActiva ? product.precioPreventa : product.precio,
+            };
+          }
+        }
+      });
+      window.openReserveModal(selectedCart, preventivaActiva);
+    });
+  }
+
+  loadStock();
+</script>
