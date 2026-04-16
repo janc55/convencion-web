@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import PostulacionCard from "../components/ui/PostulacionCard.astro";
 
+export const prerender = false;
+
 const PUBLIC_R2_URL = "https://pub-7dd27b2d2fb34a2289eac5056721ab3e.r2.dev";
 interface Postulacion {
     id: string;
