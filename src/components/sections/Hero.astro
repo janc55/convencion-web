@@ -6,6 +6,11 @@ import InfoModal from "../ui/InfoModal.astro";
   class="relative min-h-screen flex items-center justify-center pt-20 pb-10 overflow-hidden bg-hero-gradient"
   id="hero"
 >
+  <!-- Background Image with Transparency -->
+  <div
+    class="absolute inset-0 bg-[url('/images/club_fachada.jpg')] bg-cover bg-center opacity-20 pointer-events-none"
+  >
+  </div>
   <div class="absolute inset-0 hex-pattern opacity-30"></div>
   <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
     <div class="mb-8 flex justify-center gap-4 items-center hero-scale-in">
