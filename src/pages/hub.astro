@@ -1,0 +1,239 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const title = "Convención Nacional Club de Leones Bolivia";
+const description =
+    "Accede rápidamente a toda la información de la LXXV Convención Nacional del Club de Leones Bolivia";
+
+interface LinkCard {
+    icon: string;
+    label: string;
+    href: string;
+    external?: boolean;
+    highlight?: boolean;
+}
+
+const links: LinkCard[] = [
+    {
+        icon: "language",
+        label: "Página oficial",
+        href: "https://clubdeleonesbolivia.lat/",
+        external: true,
+    },
+    {
+        icon: "calendar_month",
+        label: "Programa del evento",
+        href: "/#programa",
+    },
+    {
+        icon: "chat",
+        label: "WhatsApp",
+        href: "https://wa.me/59165433511",
+        external: true,
+    },
+    {
+        icon: "thumb_up",
+        label: "Facebook",
+        href: "https://www.facebook.com/profile.php?id=61580742766453",
+        external: true,
+    },
+    {
+        icon: "location_on",
+        label: "Ubicaciones / Mapa",
+        href: "https://www.google.com/maps/d/u/0/edit?mid=1JzMMeYAmILn-rGiVSZThMZBZ3iw2Xsw&usp=sharing",
+        external: true,
+    },
+    {
+        icon: "campaign",
+        label: "Avisos importantes",
+        href: "#avisos",
+        highlight: true,
+    },
+    {
+        icon: "call",
+        label: "Contacto",
+        href: "tel:+59165433511",
+    },
+];
+---
+
+<Layout title={title}>
+    <head slot="head">
+        <meta name="description" content={description} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/images/logo-convencion.jpeg" />
+    </head>
+
+    <main
+        class="relative min-h-screen flex flex-col items-center bg-hero-gradient overflow-hidden"
+    >
+        <!-- Background texture -->
+        <div
+            class="absolute inset-0 hex-pattern opacity-20 pointer-events-none"
+        >
+        </div>
+
+        <div class="relative z-10 w-full max-w-md mx-auto px-5 py-10">
+            <!-- ── Header ── -->
+            <header class="text-center mb-10">
+                <div class="hub-card-enter" style="--hub-i:0">
+                    <img
+                        src="/images/logo-convencion.jpeg"
+                        alt="Logo LXXV Convención Nacional del Club de Leones Bolivia"
+                        class="w-28 h-28 mx-auto object-contain rounded-xl shadow-[0_0_30px_rgba(238,194,0,0.25)] mb-6"
+                        width="112"
+                        height="112"
+                    />
+                </div>
+
+                <h1
+                    class="font-headline text-2xl text-primary leading-snug tracking-tight mb-2 hub-card-enter"
+                    style="--hub-i:1"
+                >
+                    LXXV Convención Nacional
+                </h1>
+                <p
+                    class="text-on-surface text-base font-semibold mb-1 hub-card-enter"
+                    style="--hub-i:1"
+                >
+                    Club de Leones Bolivia
+                </p>
+                <p
+                    class="text-on-surface-variant text-sm hub-card-enter"
+                    style="--hub-i:2"
+                >
+                    Acceso rápido a información del evento
+                </p>
+
+                <!-- Heritage ribbon -->
+                <div
+                    class="mx-auto mt-6 w-16 h-[2px] bg-gradient-to-r from-primary to-tertiary rounded-full hub-card-enter"
+                    style="--hub-i:2"
+                >
+                </div>
+            </header>
+
+            <!-- ── Link Cards ── -->
+            <nav
+                class="flex flex-col gap-3 mb-10"
+                aria-label="Enlaces del evento"
+            >
+                {
+                    links.map((link, i) => (
+                        <a
+                            href={link.href}
+                            target={link.external ? "_blank" : undefined}
+                            rel={
+                                link.external
+                                    ? "noopener noreferrer"
+                                    : undefined
+                            }
+                            class:list={[
+                                "hub-link-card hub-card-enter group",
+                                "flex items-center gap-4 px-5 py-4 rounded-xl",
+                                "transition-all duration-300 ease-out",
+                                "hover:scale-[1.03] active:scale-[0.97]",
+                                link.highlight
+                                    ? "bg-primary/15 border border-primary/40 hover:bg-primary/25"
+                                    : "bg-surface-container-high/60 border border-outline-variant/15 hover:bg-surface-container-highest/80",
+                            ]}
+                            style={`--hub-i:${i + 3}`}
+                        >
+                            <span
+                                class:list={[
+                                    "material-symbols-outlined text-2xl transition-transform duration-300 group-hover:scale-110",
+                                    link.highlight
+                                        ? "text-primary"
+                                        : "text-secondary",
+                                ]}
+                            >
+                                {link.icon}
+                            </span>
+                            <span class="text-on-surface font-medium text-base flex-1">
+                                {link.label}
+                            </span>
+                            <span class="material-symbols-outlined text-lg text-on-surface-variant/50 transition-transform duration-300 group-hover:translate-x-1">
+                                chevron_right
+                            </span>
+                        </a>
+                    ))
+                }
+            </nav>
+
+            <!-- ── Avisos Section ── -->
+            <section
+                id="avisos"
+                class="mb-10 hub-card-enter"
+                style="--hub-i:11"
+                aria-label="Avisos importantes"
+            >
+                <div
+                    class="bg-primary/10 border border-primary/30 rounded-xl px-5 py-5"
+                >
+                    <div class="flex items-center gap-2 mb-3">
+                        <span
+                            class="material-symbols-outlined text-primary text-xl"
+                            >campaign</span
+                        >
+                        <h2 class="font-headline text-primary text-lg">
+                            Avisos importantes
+                        </h2>
+                    </div>
+                    <ul
+                        class="text-on-surface text-sm leading-relaxed space-y-2"
+                    >
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary mt-0.5">•</span>
+                            <span
+                                >El evento se realizará del <strong
+                                    >30 de abril</strong
+                                > al <strong>3 de mayo de 2026</strong> en Oruro,
+                                Bolivia.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary mt-0.5">•</span>
+                            <span
+                                >Recuerda llevar tu credencial visible en todo
+                                momento durante las actividades.</span
+                            >
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <span class="text-primary mt-0.5">•</span>
+                            <span
+                                >Para consultas, comunícate al <a
+                                    href="https://wa.me/59165433511"
+                                    class="text-secondary underline underline-offset-2 hover:text-primary transition-colors"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >WhatsApp del Comité</a
+                                >.</span
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ── Footer ── -->
+            <footer class="text-center hub-card-enter" style="--hub-i:12">
+                <div class="flex items-center justify-center gap-3 mb-3">
+                    <img
+                        src="/images/logo-leones-blanco.png"
+                        alt="Logo Club de Leones"
+                        class="w-8 h-8 object-contain opacity-60"
+                        width="32"
+                        height="32"
+                    />
+                </div>
+                <p class="text-on-surface-variant text-xs">
+                    Club de Leones Bolivia &copy; 2026
+                </p>
+                <p class="text-on-surface-variant/50 text-[10px] mt-1">
+                    Oruro, Bolivia
+                </p>
+            </footer>
+        </div>
+    </main>
+</Layout>
