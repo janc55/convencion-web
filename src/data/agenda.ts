@@ -251,8 +251,8 @@ export const agendaData: AgendaDay[] = [
         title: "Almuerzo de los Amigos de Melvin Jones",
         description: "Almuerzo exclusivo para miembros destacados.",
         icon: "restaurant",
-        location: "HOTEL SUCRE",
-        location_url: "https://maps.app.goo.gl/hUrzEzYWCcEeDAH88",
+        location: "Club Oruro",
+        location_url: "https://maps.app.goo.gl/8K3pzHM3spmNcSqQ8",
         responsible: "Comité Organizador",
       },
       {
