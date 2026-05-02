@@ -249,7 +249,7 @@ export const agendaData: AgendaDay[] = [
       {
         time: "12:00 - 14:30",
         title: "Almuerzo de los Amigos de Melvin Jones",
-        description: "Almuerzo exclusivo para miembros destacados.",
+        description: "Registro necesario para la asistencia al almuerzo.",
         icon: "restaurant",
         location: "Club Oruro",
         location_url: "https://maps.app.goo.gl/8K3pzHM3spmNcSqQ8",
@@ -273,7 +273,7 @@ export const agendaData: AgendaDay[] = [
         responsible: "Comité Organizador",
       },
       {
-        time: "16:15 - 16:30",
+        time: "16:45 - 17:00",
         title: "Refrigerio",
         description: "Pausa para refrigerio.",
         icon: "coffee",
@@ -282,7 +282,7 @@ export const agendaData: AgendaDay[] = [
         responsible: "Comité Organizador",
       },
       {
-        time: "16:30 - 18:00",
+        time: "17:00 - 17:30",
         title: "Mensaje del Orador Oficial: Proclamación de Autoridades y Clausura",
         description: "Anuncio de autoridades electas y cierre oficial.",
         icon: "celebration",
