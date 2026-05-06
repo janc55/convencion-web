@@ -1,0 +1,58 @@
+---
+const semblanza = {
+    titulo: "L. LUIS CABRERA FRANCISDAKIS",
+    subtitulo: "L.CHRISTIAN SIMÓN CORTÉS GUMUCIO",
+    cargo: "DIRECTOR DE LA CONVENCIÓN",
+    contenido: `MUY QUERIDOS ASISTENTES A LA LXXV CONVENCIÓN NACIONAL Y LIII BI DISTRITAL DEL LEONISMO BOLIVIANO. EL CLUB DE LEONES DE ORURO SE SIENTE FELIZ POR DOS RAZONES DE IMPORTANCIA SUPERLATIVA: 
+LA PRIMERA ES QUE CON VUESTRA PRESENCIA SE REAVIVA Y FORTALECE NUESTRO ESPÍRITU DE SERVICIO Y, CONSECUENTEMENTE, SE MULTIPLICARÁN NUESTRAS OBRAS EN BIEN DE LOS NECESITADOS; GRACIAS POR VENIR, ES ALGO EDIFICANTE. 
+LA SEGUNDA RAZÓN, MÁS EMOCIONAL Y MÁS AMPLIA, ES LA OPORTUNIDAD DE COMPARTIR CONTODOS USTEDES EL POR QUÉ SE HA TOMADO LA DECISIÓN DE NOMBRAR A ESTA CONVENCIÓN L. LUIS CABRERA FRANCISDAKIS. 
+NUESTRO QUERIDO L. LUCHO HA SIDO UN SOCIO ACTIVO, UN AMIGO ENTRAÑABLE, UN COMPAÑERO DE AVENTURAS EN EL SERVICIO, UN EMPRENDEDOR TALENTOSO E INDECLINABLE, DEPORTISTA AFICIONADO Y, SOBRE TODO ELLO, UN GRAN SER HUMANO. 
+CON SU CARÁCTER MAGNÉTICO IMPULSABA LA UNIDAD DE LOS SOCIOS Y EL ÉXITO DE LAS ACTIVIDADES. CON SU PERMANENTE CHISPA DE BUEN HUMOR, CON PALABRAS FRANCAS, CONSTRUÍA SÓLIDOS NEXOS ENTRE TODOS. 
+NACIÓ EN SANTA CRUZ, PERO DESDE SUS AÑOS DE UNIVERSITARIO EN LA FNI (FACULTAD NACIONAL DE INGENIERÍA- UNIVERSIDAD TÉCNICA DE ORURO), SE ENAMORÓ DE ESTA FRÍA TIERRA, HECHÓ RAÍCES, HIZO UNA HERMOSA FAMILIA Y APORTÓ SIGNIFICATIVAMENTE AL DESARROLLO DE LAS REDES ELÉCTRICAS EN EL ÁREA RURAL DEL OCCIDENTE ORUREÑO. 
+PARTICIPÓ DE VARIAS INSTITUCIONES ORUREÑAS EN LO CORPORATIVO, EN LA DOCENCIA UNIVERSITARIA, EN EL CLUB INTERNACIONAL Y VARIAS OTRAS ORGANIZACIONES, Y EN CADA UNA DE ELLAS NO DESPERDICIÓ OPORTUNIDAD ALGUNA DE DECIR CON ORGULLO QUE SE CONSIDERABA "EL MEJOR ORUREÑO QUE HA PARIDO SANTA CRUZ". 
+EN NUESTRO QUERIDO CLUB, FUE HERMANO Y AMIGO DE TODOS, PERO DESARROLLÓ UNA CONEXIÓN FUERTÍSIMA CON NUESTRO MUY QUERIDO HERMANO LEÓN ROBERTO MEJÍA ARCE Y SU DAMA LEONA RUTH, PARA ELLOS DESDE ESTA EXCELSA PALESTRA, VA NUESTRO RECONOCIMIENTO MÁS ELEVADO Y SUBLIME.  PORQUE SOLO LOS BUENOS AMIGOS HACEN QUE LA AMISTAD TRASCIENDA LOS LÍMITES DE LA VIDA. DIGO ESTO PORQUE FUE ROBERTO, PRECÍSAMENTE, QUIEN SOLICITÓ AL DIRECTORIO DE LA CONVENCIÓN QUE EL NOMBRE DE LUCHO FUESE HONRADO EN ESTE MAGNO EVENTO; SOLICITUD QUE AL UNÍSONO TODOS APOYAMOS. GRACIAS H.L. ROBERTO POR TAN ATINADA Y NOBLE ACTITUD. 
+CON SU PARTIDA HACIA LA MORADA ETERNA LUCHO HA DEJADO MÁS ENSEÑANZAS QUE VACÍOS. 
+A POR MÁS DE DOCE AÑOS DE YA NO TENERLE EN NUESTRO CUBIL… NO HEMOS DEJADO DE EXTRAÑARLE.     GRACIAS.`,
+};
+---
+
+<section class="py-24 bg-surface-container-low">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12 animate-on-scroll from-top">
+            <span
+                class="inline-block bg-primary/10 text-primary px-4 py-1.5 text-sm font-bold rounded-full uppercase tracking-widest border border-primary/20 mb-6"
+            >
+                Semblanza
+            </span>
+            <h2 class="font-headline text-4xl md:text-5xl text-on-surface mb-2">
+                {semblanza.titulo}
+            </h2>
+            <p class="text-on-surface-variant text-lg">
+                <span class="text-secondary font-semibold"
+                    >POR: {semblanza.subtitulo}</span
+                >
+            </p>
+            <p
+                class="text-on-surface-variant/70 text-sm uppercase tracking-widest mt-1"
+            >
+                {semblanza.cargo}
+            </p>
+        </div>
+
+        <div
+            class="bg-surface-container-high rounded-2xl p-8 md:p-12 border border-outline-variant/20 animate-on-scroll from-bottom"
+        >
+            <div class="prose prose-lg max-w-none text-justify">
+                {
+                    semblanza.contenido
+                        .split("\n")
+                        .map((linea) => (
+                            <p class="text-on-surface-variant leading-relaxed mb-4 last:mb-0 whitespace-pre-line">
+                                {linea}
+                            </p>
+                        ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
