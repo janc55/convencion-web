@@ -1,5 +1,5 @@
 ---
-
+const registroCerrado = true;
 ---
 
 <section class="py-24 bg-[#0c3569] relative" id="registro">
@@ -11,10 +11,17 @@
       <h2 class="font-headline text-4xl text-center text-primary mb-4">
         Registro de Participantes
       </h2>
-      <p class="text-center text-secondary mb-6">
-        Complete el formulario para confirmar su asistencia a la convención.
-      </p>
 
+      {registroCerrado && (
+        <div class="text-center py-12">
+          <span class="material-symbols-outlined text-6xl text-primary mb-4">event_busy</span>
+          <p class="text-2xl font-bold text-on-surface mb-2">El registro ha cerrado</p>
+          <p class="text-on-surface-variant">Gracias por su interés en la LXXV Convención Nacional</p>
+        </div>
+      )}
+
+      {!registroCerrado && (
+        <>
       <div
         id="registration-countdown"
         class="text-center mb-8 py-4 px-6 bg-primary/10 border border-primary/30 rounded-lg"
@@ -344,6 +351,8 @@
           </div>
         </div>
       </div>
+        </>
+      )}
     </div>
   </div>
 </section>
